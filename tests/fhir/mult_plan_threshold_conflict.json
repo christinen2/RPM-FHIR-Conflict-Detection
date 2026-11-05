@@ -1,0 +1,188 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "DINGO/PlanDefinition/Cond1",
+      "request": {
+        "method": "PUT",
+        "url": "PlanDefinition/Cond1"
+      },
+      "resource": {
+        "resourceType": "PlanDefinition",
+        "id": "Cond1",
+        "url": "DINGO/PlanDefinition/Cond1",
+        "name": "Cond1-PlanDefinition",
+        "title": "Cond1-PlanDefinition",
+        "status": "active",
+        "action": [
+          {
+            "title": "Default_Threshold-Action1",
+            "definitionCanonical": "DINGO/ActivityDefinition/Action1"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ActivityDefinition/Action1",
+      "request": {
+        "method": "PUT",
+        "url": "ActivityDefinition/Action1"
+      },
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "Action1",
+        "url": "DINGO/ActivityDefinition/Action1",
+        "meta": {
+          "profile": [
+            "DINGO/StructureDefinition/activity-definition-threshold-default|1.0.0"
+          ]
+        },
+        "name": "Action1",
+        "title": "Action 1 title",
+        "status": "active",
+        "date": "2025-01-30T06:47:18.500+00:00",
+        "usage": "threshold-default",
+        "intent": "plan",
+        "useContext": [
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "urgent"
+            },
+            "valueQuantity": {
+              "value": 99,
+              "comparator": ">=",
+              "unit": "mmHg"
+            }
+          },
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "asap"
+            },
+            "valueQuantity": {
+              "value": 179,
+              "comparator": ">=",
+              "unit": "mmHg"
+            }
+          }
+        ],
+        "effectivePeriod": {
+          "start": "2025-01-30T06:47:18.500+00:00"
+        },
+        "observationRequirement": [
+          {
+            "reference": "ObservationDefinition/Obs1"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ObservationDefinition/Obs1",
+      "request": {
+        "method": "PUT",
+        "url": "ObservationDefinition/Obs1"
+      },
+      "resource": {
+        "resourceType": "ObservationDefinition",
+        "id": "Obs1",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:11073:10101",
+              "code": "MDC_PRESS_BLD_NONINV_SYS"
+            }
+          ]
+        },
+        "permittedDataType": ["Quantity"],
+        "quantitativeDetails": {
+          "unit": {
+            "coding": [
+              {
+                "system": "urn:iso:std:iso:11073:10101",
+                "code": "MDC_DIM_MMHG"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "DINGO/PlanDefinition/Cond2",
+      "request": {
+        "method": "PUT",
+        "url": "PlanDefinition/Cond2"
+      },
+      "resource": {
+        "resourceType": "PlanDefinition",
+        "id": "Cond2",
+        "url": "DINGO/PlanDefinition/Cond2",
+        "name": "Cond2-PlanDefinition",
+        "title": "Cond2-PlanDefinition",
+        "status": "active",
+        "action": [
+          {
+            "title": "Default_Threshold-Action2",
+            "definitionCanonical": "DINGO/ActivityDefinition/Action2"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ActivityDefinition/Action2",
+      "request": {
+        "method": "PUT",
+        "url": "ActivityDefinition/Action2"
+      },
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "Action2",
+        "url": "DINGO/ActivityDefinition/Action2",
+        "meta": {
+          "profile": [
+            "DINGO/StructureDefinition/activity-definition-threshold-default|1.0.0"
+          ]
+        },
+        "name": "Action2",
+        "title": "Action 2 title",
+        "status": "active",
+        "date": "2025-01-30T06:47:18.500+00:00",
+        "usage": "threshold-default",
+        "intent": "plan",
+        "useContext": [
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "urgent"
+            },
+            "valueQuantity": {
+              "value": 101,
+              "comparator": "<",
+              "unit": "mmHg"
+            }
+          },
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "asap"
+            },
+            "valueQuantity": {
+              "value": 90,
+              "comparator": "<",
+              "unit": "mmHg"
+            }
+          }
+        ],
+        "effectivePeriod": {
+          "start": "2025-01-30T06:47:18.500+00:00"
+        },
+        "observationRequirement": [
+          {
+            "reference": "ObservationDefinition/Obs1"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,326 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "DINGO/PlanDefinition/Cond1",
+      "request": {
+        "method": "PUT",
+        "url": "PlanDefinition/Cond1"
+      },
+      "resource": {
+        "resourceType": "PlanDefinition",
+        "id": "Cond1",
+        "url": "DINGO/PlanDefinition/Cond1",
+        "name": "Cond1-PlanDefinition",
+        "title": "Severe Hypertensive Emergency Protocol",
+        "status": "active",
+        "action": [
+          {
+            "title": "Default_Threshold-Action1",
+            "definitionCanonical": "DINGO/ActivityDefinition/Action1"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ActivityDefinition/Action1",
+      "request": {
+        "method": "PUT",
+        "url": "ActivityDefinition/Action1"
+      },
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "Action1",
+        "url": "DINGO/ActivityDefinition/Action1",
+        "meta": {
+          "profile": [
+            "DINGO/StructureDefinition/activity-definition-threshold-default|1.0.0"
+          ]
+        },
+        "name": "Action1",
+        "title": "Hold Antihypertensive (ASAP High SBP)",
+        "status": "active",
+        "date": "2026-08-11T00:00:00.000+00:00",
+        "usage": "threshold-default",
+        "intent": "plan",
+        "useContext": [
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "urgent"
+            },
+            "valueQuantity": {
+              "value": 150,
+              "comparator": ">=",
+              "unit": "mmHg"
+            }
+          }
+        ],
+        "effectivePeriod": {
+          "start": "2026-08-11T00:00:00.000+00:00"
+        },
+        "observationRequirement": [
+          {
+            "reference": "ObservationDefinition/Obs1"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ObservationDefinition/Obs1",
+      "request": {
+        "method": "PUT",
+        "url": "ObservationDefinition/Obs1"
+      },
+      "resource": {
+        "resourceType": "ObservationDefinition",
+        "id": "Obs1",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:11073:10101",
+              "code": "MDC_PRESS_BLD_NONINV_SYS"
+            }
+          ]
+        },
+        "permittedDataType": ["Quantity"],
+        "quantitativeDetails": {
+          "unit": {
+            "coding": [
+              {
+                "system": "urn:iso:std:iso:11073:10101",
+                "code": "MDC_DIM_MMHG"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "DINGO/PlanDefinition/Cond2",
+      "request": {
+        "method": "PUT",
+        "url": "PlanDefinition/Cond2"
+      },
+      "resource": {
+        "resourceType": "PlanDefinition",
+        "id": "Cond2",
+        "url": "DINGO/PlanDefinition/Cond2",
+        "name": "Cond2-PlanDefinition",
+        "title": "Moderate Hypertension Alert",
+        "status": "active",
+        "action": [
+          {
+            "title": "Default_Threshold-Action2",
+            "definitionCanonical": "DINGO/ActivityDefinition/Action2"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ActivityDefinition/Action2",
+      "request": {
+        "method": "PUT",
+        "url": "ActivityDefinition/Action2"
+      },
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "Action2",
+        "url": "DINGO/ActivityDefinition/Action2",
+        "meta": {
+          "profile": [
+            "DINGO/StructureDefinition/activity-definition-threshold-default|1.0.0"
+          ]
+        },
+        "name": "Action2",
+        "title": "Hold Antihypertensive (Urgent SBP)",
+        "status": "active",
+        "date": "2026-08-11T00:00:00.000+00:00",
+        "usage": "threshold-default",
+        "intent": "plan",
+        "useContext": [
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "urgent"
+            },
+            "valueQuantity": {
+              "value": 140,
+              "comparator": ">=",
+              "unit": "mmHg"
+            }
+          }
+        ],
+        "effectivePeriod": {
+          "start": "2026-08-11T00:00:00.000+00:00"
+        },
+        "observationRequirement": [
+          {
+            "reference": "ObservationDefinition/Obs1"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/PlanDefinition/Cond3",
+      "request": {
+        "method": "PUT",
+        "url": "PlanDefinition/Cond3"
+      },
+      "resource": {
+        "resourceType": "PlanDefinition",
+        "id": "Cond3",
+        "url": "DINGO/PlanDefinition/Cond3",
+        "name": "Cond3-PlanDefinition",
+        "title": "Severe Hypokalemia Safety Protocol",
+        "status": "active",
+        "action": [
+          {
+            "title": "Default_Threshold-Action3",
+            "definitionCanonical": "DINGO/ActivityDefinition/Action3"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ActivityDefinition/Action3",
+      "request": {
+        "method": "PUT",
+        "url": "ActivityDefinition/Action3"
+      },
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "Action3",
+        "url": "DINGO/ActivityDefinition/Action3",
+        "meta": {
+          "profile": [
+            "DINGO/StructureDefinition/activity-definition-threshold-default|1.0.0"
+          ]
+        },
+        "name": "Action3",
+        "title": "Administer IV Potassium Supplement (ASAP Low K+)",
+        "status": "active",
+        "date": "2026-08-11T00:00:00.000+00:00",
+        "usage": "threshold-default",
+        "intent": "plan",
+        "useContext": [
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "urgent"
+            },
+            "valueQuantity": {
+              "value": 3.0,
+              "comparator": "<=",
+              "unit": "mmol/L"
+            }
+          }
+        ],
+        "effectivePeriod": {
+          "start": "2026-08-11T00:00:00.000+00:00"
+        },
+        "observationRequirement": [
+          {
+            "reference": "ObservationDefinition/Obs2"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ObservationDefinition/Obs2",
+      "request": {
+        "method": "PUT",
+        "url": "ObservationDefinition/Obs2"
+      },
+      "resource": {
+        "resourceType": "ObservationDefinition",
+        "id": "Obs2",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2823-3"
+            }
+          ]
+        },
+        "permittedDataType": ["Quantity"],
+        "quantitativeDetails": {
+          "unit": {
+            "coding": [
+              {
+                "system": "http://unitsofmeasure.org",
+                "code": "mmol/L"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "DINGO/PlanDefinition/Cond4",
+      "request": {
+        "method": "PUT",
+        "url": "PlanDefinition/Cond4"
+      },
+      "resource": {
+        "resourceType": "PlanDefinition",
+        "id": "Cond4",
+        "url": "DINGO/PlanDefinition/Cond4",
+        "name": "Cond4-PlanDefinition",
+        "title": "Mild Hypokalemia Safety Protocol",
+        "status": "active",
+        "action": [
+          {
+            "title": "Default_Threshold-Action4",
+            "definitionCanonical": "DINGO/ActivityDefinition/Action4"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ActivityDefinition/Action4",
+      "request": {
+        "method": "PUT",
+        "url": "ActivityDefinition/Action4"
+      },
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "Action4",
+        "url": "DINGO/ActivityDefinition/Action4",
+        "meta": {
+          "profile": [
+            "DINGO/StructureDefinition/activity-definition-threshold-default|1.0.0"
+          ]
+        },
+        "name": "Action4",
+        "title": "Administer Oral Potassium Supplement (Urgent Low K+)",
+        "status": "active",
+        "date": "2026-08-11T00:00:00.000+00:00",
+        "usage": "threshold-default",
+        "intent": "plan",
+        "useContext": [
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "urgent"
+            },
+            "valueQuantity": {
+              "value": 3.5,
+              "comparator": "<=",
+              "unit": "mmol/L"
+            }
+          }
+        ],
+        "effectivePeriod": {
+          "start": "2026-08-11T00:00:00.000+00:00"
+        },
+        "observationRequirement": [
+          {
+            "reference": "ObservationDefinition/Obs2"
+          }
+        ]
+      }
+    }
+  ]
+}

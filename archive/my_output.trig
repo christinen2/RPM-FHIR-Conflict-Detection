@@ -1,0 +1,558 @@
+@prefix : <http://anonymous.org/vocab/temporalVocab/> .
+@prefix VOCAB: <http://anonymous.org/vocav/> .
+@prefix data: <http://anonymous.org/data/> .
+@prefix nanopub: <http://www.nanopub.org/nschema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+data:Rec-Heartfailure-HeartFailureWeightBaseline_pubinfo {
+    data:Rec-Heartfailure-HeartFailureWeightBaseline_head prov:generatedAtTime "2026-07-20T06:27:52"^^xsd:dateTime ;
+        prov:wasAttributedTo data:FHIRTransformationPipeline .
+}
+
+data:Rec-Heartfailure-HeartFailureDeviceScale_pubinfo {
+    data:Rec-Heartfailure-HeartFailureDeviceScale_head prov:generatedAtTime "2026-07-20T06:27:52"^^xsd:dateTime ;
+        prov:wasAttributedTo data:FHIRTransformationPipeline .
+}
+
+data:Rec-Heartfailure-HeartFailureBpHypertension_pubinfo {
+    data:Rec-Heartfailure-HeartFailureBpHypertension_head prov:generatedAtTime "2026-07-20T06:27:52"^^xsd:dateTime ;
+        prov:wasAttributedTo data:FHIRTransformationPipeline .
+}
+
+data:Rec-Heartfailure-HeartFailureBpHypertension_provenance {
+    data:CB-Heartfailure-HeartFailureBpHypertension prov:wasDerivedFrom <DINGO/ActivityDefinition/HEART-FAILURE-BP-HYPERTENSION> .
+
+    data:Rec-Heartfailure-HeartFailureBpHypertension_assertion prov:wasDerivedFrom <DINGO/PlanDefinition/Heartfailure> .
+}
+
+data:Rec-Heartfailure-HeartFailureDevicePulsOxim_pubinfo {
+    data:Rec-Heartfailure-HeartFailureDevicePulsOxim_head prov:generatedAtTime "2026-07-20T06:27:52"^^xsd:dateTime ;
+        prov:wasAttributedTo data:FHIRTransformationPipeline .
+}
+
+data:Rec-Heartfailure-HeartFailureWeightBaseline_provenance {
+    data:CB-Heartfailure-HeartFailureWeightBaseline prov:wasDerivedFrom <DINGO/ActivityDefinition/HEART-FAILURE-WEIGHT-BASELINE> .
+
+    data:Rec-Heartfailure-HeartFailureWeightBaseline_assertion prov:wasDerivedFrom <DINGO/PlanDefinition/Heartfailure> .
+}
+
+data:Rec-Heartfailure-HeartFailureHrTachycardia_pubinfo {
+    data:Rec-Heartfailure-HeartFailureHrTachycardia_head prov:generatedAtTime "2026-07-20T06:27:52"^^xsd:dateTime ;
+        prov:wasAttributedTo data:FHIRTransformationPipeline .
+}
+
+data:Rec-Heartfailure-HeartFailureHrTachycardia_head {
+    data:Rec-Heartfailure-HeartFailureHrTachycardia_head a nanopub:Nanopublication ;
+        nanopub:hasAssertion data:Rec-Heartfailure-HeartFailureHrTachycardia_assertion ;
+        nanopub:hasProvenance data:Rec-Heartfailure-HeartFailureHrTachycardia_provenance ;
+        nanopub:hasPublicationInfo data:Rec-Heartfailure-HeartFailureHrTachycardia_pubinfo .
+}
+
+data:Rec-Heartfailure-HeartFailureSpo2Hypoxia_head {
+    data:Rec-Heartfailure-HeartFailureSpo2Hypoxia_head a nanopub:Nanopublication ;
+        nanopub:hasAssertion data:Rec-Heartfailure-HeartFailureSpo2Hypoxia_assertion ;
+        nanopub:hasProvenance data:Rec-Heartfailure-HeartFailureSpo2Hypoxia_provenance ;
+        nanopub:hasPublicationInfo data:Rec-Heartfailure-HeartFailureSpo2Hypoxia_pubinfo .
+}
+
+data:Rec-Heartfailure-HeartFailureDeviceBp_pubinfo {
+    data:Rec-Heartfailure-HeartFailureDeviceBp_head prov:generatedAtTime "2026-07-20T06:27:52"^^xsd:dateTime ;
+        prov:wasAttributedTo data:FHIRTransformationPipeline .
+}
+
+data:Rec-Heartfailure-HeartFailureBpHypertension_head {
+    data:Rec-Heartfailure-HeartFailureBpHypertension_head a nanopub:Nanopublication ;
+        nanopub:hasAssertion data:Rec-Heartfailure-HeartFailureBpHypertension_assertion ;
+        nanopub:hasProvenance data:Rec-Heartfailure-HeartFailureBpHypertension_provenance ;
+        nanopub:hasPublicationInfo data:Rec-Heartfailure-HeartFailureBpHypertension_pubinfo .
+}
+
+data:Rec-Heartfailure-HeartFailureBpHypertension_assertion {
+    data:Rec-Heartfailure-HeartFailureBpHypertension a VOCAB:ClinicalRecommendation ;
+        rdfs:label "Default_Threshold-BP_HYPERTENSION-HeartFailure"@en ;
+        VOCAB:aboutExecutionOf :ActMonitor-Heartfailure-HeartFailureBpHypertension ;
+        VOCAB:basedOn data:CB-Heartfailure-HeartFailureBpHypertension ;
+        VOCAB:partOf :CIG-Heartfailure ;
+        VOCAB:strength "should" .
+
+    :ActMonitor-Heartfailure-HeartFailureBpHypertension VOCAB:causes :TrTransitionTo-Heartfailure-HeartFailureBpHypertension .
+
+    :TrTransitionTo-Heartfailure-HeartFailureBpHypertension a VOCAB:TransitionType,
+            owl:NamedIndividual ;
+        VOCAB:hasExpectedSituation _:N4217e3f3c9a6407fbb668aa06f4f7780,
+            _:Nf40f8542cbf442f8a94d3d65bb5953be .
+
+    data:CB-Heartfailure-HeartFailureBpHypertension a VOCAB:CausationBelief ;
+        VOCAB:frequency "always" ;
+        VOCAB:strength "L1" .
+
+    _:N4217e3f3c9a6407fbb668aa06f4f7780 a VOCAB:SituationType ;
+        rdfs:label "Patient in range 99.0 to 179.0 mmHg"@en ;
+        VOCAB:hasLowerConstraint _:N86eb5f3f119e4072b35783c8c55363a1 ;
+        VOCAB:hasUnit "mmHg" ;
+        VOCAB:hasUpperConstraint _:N6b7051739eb541a2a299e949c8a94f2b ;
+        VOCAB:refersToCharacteristic "Blood Pressure" ;
+        VOCAB:stateOf "urgent"^^xsd:string .
+
+    _:N6b7051739eb541a2a299e949c8a94f2b VOCAB:hasLogicalOperator "<" ;
+        VOCAB:hasValue 1.79e+02 .
+
+    _:N86eb5f3f119e4072b35783c8c55363a1 VOCAB:hasLogicalOperator ">=" ;
+        VOCAB:hasValue 9.9e+01 .
+
+    _:Nf40f8542cbf442f8a94d3d65bb5953be a VOCAB:SituationType ;
+        rdfs:label "Patient state >=179.0 mmHg"@en ;
+        VOCAB:hasLogicalOperator ">=" ;
+        VOCAB:hasUnit "mmHg" ;
+        VOCAB:hasValue 1.79e+02 ;
+        VOCAB:refersToCharacteristic "Blood Pressure" ;
+        VOCAB:stateOf "asap"^^xsd:string .
+}
+
+data:Rec-Heartfailure-HeartFailureBpHypotension_provenance {
+    data:CB-Heartfailure-HeartFailureBpHypotension prov:wasDerivedFrom <DINGO/ActivityDefinition/HEART-FAILURE-BP-HYPOTENSION> .
+
+    data:Rec-Heartfailure-HeartFailureBpHypotension_assertion prov:wasDerivedFrom <DINGO/PlanDefinition/Heartfailure> .
+}
+
+data:Rec-Heartfailure-HeartFailureDevicePulsOxim_provenance {
+    data:CB-Heartfailure-HeartFailureDevicePulsOxim prov:wasDerivedFrom <DINGO/ActivityDefinition/HEART-FAILURE-DEVICE-PULS-OXIM> .
+
+    data:Rec-Heartfailure-HeartFailureDevicePulsOxim_assertion prov:wasDerivedFrom <DINGO/PlanDefinition/Heartfailure> .
+}
+
+data:Rec-Heartfailure-HeartFailureBpHypotension_assertion {
+    data:Rec-Heartfailure-HeartFailureBpHypotension a VOCAB:ClinicalRecommendation ;
+        rdfs:label "Default_Threshold-BP_HYPOTENSION-HeartFailure"@en ;
+        VOCAB:aboutExecutionOf :ActMonitor-Heartfailure-HeartFailureBpHypotension ;
+        VOCAB:basedOn data:CB-Heartfailure-HeartFailureBpHypotension ;
+        VOCAB:partOf :CIG-Heartfailure ;
+        VOCAB:strength "should" .
+
+    :ActMonitor-Heartfailure-HeartFailureBpHypotension VOCAB:causes :TrTransitionTo-Heartfailure-HeartFailureBpHypotension .
+
+    :TrTransitionTo-Heartfailure-HeartFailureBpHypotension a VOCAB:TransitionType,
+            owl:NamedIndividual ;
+        VOCAB:hasExpectedSituation _:N885e099e597443198cea3ba8b5008810,
+            _:Na59e048effcf4408b7ea8b32519682a6 .
+
+    data:CB-Heartfailure-HeartFailureBpHypotension a VOCAB:CausationBelief ;
+        VOCAB:frequency "always" ;
+        VOCAB:strength "L1" .
+
+    _:N885e099e597443198cea3ba8b5008810 a VOCAB:SituationType ;
+        rdfs:label "Patient state <90.0 mmHg"@en ;
+        VOCAB:hasLogicalOperator "<" ;
+        VOCAB:hasUnit "mmHg" ;
+        VOCAB:hasValue 9e+01 ;
+        VOCAB:refersToCharacteristic "Hypotension" ;
+        VOCAB:stateOf "asap"^^xsd:string .
+
+    _:Na59e048effcf4408b7ea8b32519682a6 a VOCAB:SituationType ;
+        rdfs:label "Patient state <101.0 mmHg"@en ;
+        VOCAB:hasLogicalOperator "<" ;
+        VOCAB:hasUnit "mmHg" ;
+        VOCAB:hasValue 1.01e+02 ;
+        VOCAB:refersToCharacteristic "Hypotension" ;
+        VOCAB:stateOf "urgent"^^xsd:string .
+}
+
+data:Rec-Heartfailure-HeartFailureHrBradycardia_head {
+    data:Rec-Heartfailure-HeartFailureHrBradycardia_head a nanopub:Nanopublication ;
+        nanopub:hasAssertion data:Rec-Heartfailure-HeartFailureHrBradycardia_assertion ;
+        nanopub:hasProvenance data:Rec-Heartfailure-HeartFailureHrBradycardia_provenance ;
+        nanopub:hasPublicationInfo data:Rec-Heartfailure-HeartFailureHrBradycardia_pubinfo .
+}
+
+data:Rec-Heartfailure-HeartFailureHrTachycardia_assertion {
+    data:Rec-Heartfailure-HeartFailureHrTachycardia a VOCAB:ClinicalRecommendation ;
+        rdfs:label "Default_Threshold-HR_TACHYCARDIA-HeartFailure"@en ;
+        VOCAB:aboutExecutionOf :ActMonitor-Heartfailure-HeartFailureHrTachycardia ;
+        VOCAB:basedOn data:CB-Heartfailure-HeartFailureHrTachycardia ;
+        VOCAB:partOf :CIG-Heartfailure ;
+        VOCAB:strength "should" .
+
+    data:CB-Heartfailure-HeartFailureHrTachycardia a VOCAB:CausationBelief ;
+        VOCAB:frequency "always" ;
+        VOCAB:strength "L1" .
+
+    :ActMonitor-Heartfailure-HeartFailureHrTachycardia VOCAB:causes :TrTransitionTo-Heartfailure-HeartFailureHrTachycardia .
+
+    :TrTransitionTo-Heartfailure-HeartFailureHrTachycardia a VOCAB:TransitionType,
+            owl:NamedIndividual ;
+        VOCAB:hasExpectedSituation _:Na3b9206bb5ae4da7993b5d42fbcfad8d,
+            _:Nc319e269c77f41bc8d756ea12cc3f22e .
+
+    _:N4874dd430eb143d5855907d8dc3fcc0a VOCAB:hasLogicalOperator ">=" ;
+        VOCAB:hasValue 9.9e+01 .
+
+    _:Na3b9206bb5ae4da7993b5d42fbcfad8d a VOCAB:SituationType ;
+        rdfs:label "Patient in range 99.0 to 149.0 bpm"@en ;
+        VOCAB:hasLowerConstraint _:N4874dd430eb143d5855907d8dc3fcc0a ;
+        VOCAB:hasUnit "bpm" ;
+        VOCAB:hasUpperConstraint _:Na61707efd5084fceb2db902f87b6606a ;
+        VOCAB:refersToCharacteristic "Tachycardia" ;
+        VOCAB:stateOf "urgent"^^xsd:string .
+
+    _:Na61707efd5084fceb2db902f87b6606a VOCAB:hasLogicalOperator "<" ;
+        VOCAB:hasValue 1.49e+02 .
+
+    _:Nc319e269c77f41bc8d756ea12cc3f22e a VOCAB:SituationType ;
+        rdfs:label "Patient state >=149.0 bpm"@en ;
+        VOCAB:hasLogicalOperator ">=" ;
+        VOCAB:hasUnit "bpm" ;
+        VOCAB:hasValue 1.49e+02 ;
+        VOCAB:refersToCharacteristic "Tachycardia" ;
+        VOCAB:stateOf "asap"^^xsd:string .
+}
+
+data:Rec-Heartfailure-HeartFailureWeightBaseline_head {
+    data:Rec-Heartfailure-HeartFailureWeightBaseline_head a nanopub:Nanopublication ;
+        nanopub:hasAssertion data:Rec-Heartfailure-HeartFailureWeightBaseline_assertion ;
+        nanopub:hasProvenance data:Rec-Heartfailure-HeartFailureWeightBaseline_provenance ;
+        nanopub:hasPublicationInfo data:Rec-Heartfailure-HeartFailureWeightBaseline_pubinfo .
+}
+
+data:Rec-Heartfailure-HeartFailureDeviceBp_head {
+    data:Rec-Heartfailure-HeartFailureDeviceBp_head a nanopub:Nanopublication ;
+        nanopub:hasAssertion data:Rec-Heartfailure-HeartFailureDeviceBp_assertion ;
+        nanopub:hasProvenance data:Rec-Heartfailure-HeartFailureDeviceBp_provenance ;
+        nanopub:hasPublicationInfo data:Rec-Heartfailure-HeartFailureDeviceBp_pubinfo .
+}
+
+data:Rec-Heartfailure-HeartFailureDeviceScale_provenance {
+    data:CB-Heartfailure-HeartFailureDeviceScale prov:wasDerivedFrom <DINGO/ActivityDefinition/HEART-FAILURE-DEVICE-SCALE> .
+
+    data:Rec-Heartfailure-HeartFailureDeviceScale_assertion prov:wasDerivedFrom <DINGO/PlanDefinition/Heartfailure> .
+}
+
+data:Rec-Heartfailure-HeartFailureWeightGain_head {
+    data:Rec-Heartfailure-HeartFailureWeightGain_head a nanopub:Nanopublication ;
+        nanopub:hasAssertion data:Rec-Heartfailure-HeartFailureWeightGain_assertion ;
+        nanopub:hasProvenance data:Rec-Heartfailure-HeartFailureWeightGain_provenance ;
+        nanopub:hasPublicationInfo data:Rec-Heartfailure-HeartFailureWeightGain_pubinfo .
+}
+
+data:Rec-Heartfailure-HeartFailureHrBradycardia_provenance {
+    data:CB-Heartfailure-HeartFailureHrBradycardia prov:wasDerivedFrom <DINGO/ActivityDefinition/HEART-FAILURE-HR-BRADYCARDIA> .
+
+    data:Rec-Heartfailure-HeartFailureHrBradycardia_assertion prov:wasDerivedFrom <DINGO/PlanDefinition/Heartfailure> .
+}
+
+data:Rec-Heartfailure-HeartFailureSpo2Hypoxia_provenance {
+    data:CB-Heartfailure-HeartFailureSpo2Hypoxia prov:wasDerivedFrom <DINGO/ActivityDefinition/HEART-FAILURE-SPO2-HYPOXIA> .
+
+    data:Rec-Heartfailure-HeartFailureSpo2Hypoxia_assertion prov:wasDerivedFrom <DINGO/PlanDefinition/Heartfailure> .
+}
+
+data:Rec-Heartfailure-HeartFailureDeviceScale_assertion {
+    data:Rec-Heartfailure-HeartFailureDeviceScale a VOCAB:ClinicalRecommendation ;
+        rdfs:label "Device-Profile-SCALE-HeartFailure"@en ;
+        VOCAB:aboutExecutionOf :ActMonitor-Heartfailure-HeartFailureDeviceScale ;
+        VOCAB:basedOn data:CB-Heartfailure-HeartFailureDeviceScale ;
+        VOCAB:partOf :CIG-Heartfailure ;
+        VOCAB:strength "should" .
+
+    :ActMonitor-Heartfailure-HeartFailureDeviceScale VOCAB:causes :TrTransitionTo-Heartfailure-HeartFailureDeviceScale .
+
+    :TrTransitionTo-Heartfailure-HeartFailureDeviceScale a VOCAB:TransitionType,
+            owl:NamedIndividual ;
+        VOCAB:hasExpectedSituation _:N4ba752c7d5a64b5ea79256b0e92ad13a .
+
+    data:CB-Heartfailure-HeartFailureDeviceScale a VOCAB:CausationBelief ;
+        VOCAB:frequency "always" ;
+        VOCAB:strength "L1" .
+
+    _:N4ba752c7d5a64b5ea79256b0e92ad13a a VOCAB:SituationType ;
+        rdfs:label "Patient in Scale Device State"@en ;
+        VOCAB:hasLogicalOperator "==" ;
+        VOCAB:hasValue "Active" ;
+        VOCAB:refersToCharacteristic "Scale Device" ;
+        VOCAB:stateOf "urgent"^^xsd:string .
+}
+
+data:Rec-Heartfailure-HeartFailureWeightGain_assertion {
+    data:Rec-Heartfailure-HeartFailureWeightGain a VOCAB:ClinicalRecommendation ;
+        rdfs:label "Default_Threshold-WEIGHT_GAIN-HeartFailure"@en ;
+        VOCAB:aboutExecutionOf :ActMonitor-Heartfailure-HeartFailureWeightGain ;
+        VOCAB:basedOn data:CB-Heartfailure-HeartFailureWeightGain ;
+        VOCAB:partOf :CIG-Heartfailure ;
+        VOCAB:strength "should" .
+
+    data:CB-Heartfailure-HeartFailureWeightGain a VOCAB:CausationBelief ;
+        VOCAB:frequency "always" ;
+        VOCAB:strength "L1" .
+
+    :ActMonitor-Heartfailure-HeartFailureWeightGain VOCAB:causes :TrTransitionTo-Heartfailure-HeartFailureWeightGain .
+
+    :TrTransitionTo-Heartfailure-HeartFailureWeightGain a VOCAB:TransitionType,
+            owl:NamedIndividual ;
+        VOCAB:hasExpectedSituation _:Nd51eebb560504b63b36d0234536872f4 .
+
+    _:Nd51eebb560504b63b36d0234536872f4 a VOCAB:SituationType ;
+        rdfs:label "Patient state >=2.0 kg"@en ;
+        VOCAB:hasLogicalOperator ">=" ;
+        VOCAB:hasUnit "kg" ;
+        VOCAB:hasValue 2e+00 ;
+        VOCAB:refersToCharacteristic "Body Weight" ;
+        VOCAB:stateOf "urgent"^^xsd:string .
+}
+
+data:Rec-Heartfailure-HeartFailureBpHypotension_pubinfo {
+    data:Rec-Heartfailure-HeartFailureBpHypotension_head prov:generatedAtTime "2026-07-20T06:27:52"^^xsd:dateTime ;
+        prov:wasAttributedTo data:FHIRTransformationPipeline .
+}
+
+data:Rec-Heartfailure-HeartFailureDeviceBp_assertion {
+    data:Rec-Heartfailure-HeartFailureDeviceBp a VOCAB:ClinicalRecommendation ;
+        rdfs:label "Device-Profile-BP-HeartFailure"@en ;
+        VOCAB:aboutExecutionOf :ActMonitor-Heartfailure-HeartFailureDeviceBp ;
+        VOCAB:basedOn data:CB-Heartfailure-HeartFailureDeviceBp ;
+        VOCAB:partOf :CIG-Heartfailure ;
+        VOCAB:strength "should" .
+
+    data:CB-Heartfailure-HeartFailureDeviceBp a VOCAB:CausationBelief ;
+        VOCAB:frequency "always" ;
+        VOCAB:strength "L1" .
+
+    :ActMonitor-Heartfailure-HeartFailureDeviceBp VOCAB:causes :TrTransitionTo-Heartfailure-HeartFailureDeviceBp .
+
+    :TrTransitionTo-Heartfailure-HeartFailureDeviceBp a VOCAB:TransitionType,
+            owl:NamedIndividual ;
+        VOCAB:hasExpectedSituation _:N92ed8a9812a7420aa85605b80d6f365c .
+
+    _:N92ed8a9812a7420aa85605b80d6f365c a VOCAB:SituationType ;
+        rdfs:label "Patient in Blood Pressure Device State"@en ;
+        VOCAB:hasLogicalOperator "==" ;
+        VOCAB:hasValue "Active" ;
+        VOCAB:refersToCharacteristic "Blood Pressure Device" ;
+        VOCAB:stateOf "urgent"^^xsd:string .
+}
+
+data:Rec-Heartfailure-HeartFailureDeviceScale_head {
+    data:Rec-Heartfailure-HeartFailureDeviceScale_head a nanopub:Nanopublication ;
+        nanopub:hasAssertion data:Rec-Heartfailure-HeartFailureDeviceScale_assertion ;
+        nanopub:hasProvenance data:Rec-Heartfailure-HeartFailureDeviceScale_provenance ;
+        nanopub:hasPublicationInfo data:Rec-Heartfailure-HeartFailureDeviceScale_pubinfo .
+}
+
+data:Rec-Heartfailure-HeartFailureWeightGain_provenance {
+    data:Rec-Heartfailure-HeartFailureWeightGain_assertion prov:wasDerivedFrom <DINGO/PlanDefinition/Heartfailure> .
+
+    data:CB-Heartfailure-HeartFailureWeightGain prov:wasDerivedFrom <DINGO/ActivityDefinition/HEART-FAILURE-WEIGHT-GAIN> .
+}
+
+data:Rec-Heartfailure-HeartFailureDevicePulsOxim_head {
+    data:Rec-Heartfailure-HeartFailureDevicePulsOxim_head a nanopub:Nanopublication ;
+        nanopub:hasAssertion data:Rec-Heartfailure-HeartFailureDevicePulsOxim_assertion ;
+        nanopub:hasProvenance data:Rec-Heartfailure-HeartFailureDevicePulsOxim_provenance ;
+        nanopub:hasPublicationInfo data:Rec-Heartfailure-HeartFailureDevicePulsOxim_pubinfo .
+}
+
+data:Rec-Heartfailure-HeartFailureSpo2Hypoxia_pubinfo {
+    data:Rec-Heartfailure-HeartFailureSpo2Hypoxia_head prov:generatedAtTime "2026-07-20T06:27:52"^^xsd:dateTime ;
+        prov:wasAttributedTo data:FHIRTransformationPipeline .
+}
+
+{
+    :ActMonitor-Heartfailure-HeartFailureBpHypertension a VOCAB:CareActionType,
+            owl:NamedIndividual ;
+        rdfs:label "Monitor Hypertension Threshold Alert"@en .
+
+    :ActMonitor-Heartfailure-HeartFailureBpHypotension a VOCAB:CareActionType,
+            owl:NamedIndividual ;
+        rdfs:label "Monitor Hypotension Threshold Alert"@en .
+
+    :ActMonitor-Heartfailure-HeartFailureDeviceBp a VOCAB:CareActionType,
+            owl:NamedIndividual ;
+        rdfs:label "Monitor Blood Pressure Device Threshold Alert"@en .
+
+    :ActMonitor-Heartfailure-HeartFailureDevicePulsOxim a VOCAB:CareActionType,
+            owl:NamedIndividual ;
+        rdfs:label "Monitor Pulse Oximeter Device Threshold Alert"@en .
+
+    :ActMonitor-Heartfailure-HeartFailureDeviceScale a VOCAB:CareActionType,
+            owl:NamedIndividual ;
+        rdfs:label "Monitor Scale Device Threshold Alert"@en .
+
+    :ActMonitor-Heartfailure-HeartFailureHrBradycardia a VOCAB:CareActionType,
+            owl:NamedIndividual ;
+        rdfs:label "Monitor Bradycardia Threshold Alert"@en .
+
+    :ActMonitor-Heartfailure-HeartFailureHrTachycardia a VOCAB:CareActionType,
+            owl:NamedIndividual ;
+        rdfs:label "Monitor Tachycardia Threshold Alert"@en .
+
+    :ActMonitor-Heartfailure-HeartFailureSpo2Hypoxia a VOCAB:CareActionType,
+            owl:NamedIndividual ;
+        rdfs:label "Monitor Hypoxia Threshold Alert"@en .
+
+    :ActMonitor-Heartfailure-HeartFailureWeightBaseline a VOCAB:CareActionType,
+            owl:NamedIndividual ;
+        rdfs:label "Monitor Weight Baseline Threshold Alert"@en .
+
+    :ActMonitor-Heartfailure-HeartFailureWeightGain a VOCAB:CareActionType,
+            owl:NamedIndividual ;
+        rdfs:label "Monitor Weight Gain Threshold Alert"@en .
+
+    :CIG-Heartfailure a VOCAB:ClinicalGuideline ;
+        rdfs:label "Testing_Heartfailure-PlanDefinition"@en .
+}
+
+data:Rec-Heartfailure-HeartFailureHrTachycardia_provenance {
+    data:Rec-Heartfailure-HeartFailureHrTachycardia_assertion prov:wasDerivedFrom <DINGO/PlanDefinition/Heartfailure> .
+
+    data:CB-Heartfailure-HeartFailureHrTachycardia prov:wasDerivedFrom <DINGO/ActivityDefinition/HEART-FAILURE-HR-TACHYCARDIA> .
+}
+
+data:Rec-Heartfailure-HeartFailureWeightBaseline_assertion {
+    data:Rec-Heartfailure-HeartFailureWeightBaseline a VOCAB:ClinicalRecommendation ;
+        rdfs:label "Default_Threshold-WEIGHT_BASELINE-HeartFailure"@en ;
+        VOCAB:aboutExecutionOf :ActMonitor-Heartfailure-HeartFailureWeightBaseline ;
+        VOCAB:basedOn data:CB-Heartfailure-HeartFailureWeightBaseline ;
+        VOCAB:partOf :CIG-Heartfailure ;
+        VOCAB:strength "should" .
+
+    :TrTransitionTo-Heartfailure-HeartFailureWeightBaseline a VOCAB:TransitionType,
+            owl:NamedIndividual ;
+        VOCAB:hasExpectedSituation _:Ne3a7a9aab0bb4e6c873f1c95e2f66a2b .
+
+    data:CB-Heartfailure-HeartFailureWeightBaseline a VOCAB:CausationBelief ;
+        VOCAB:frequency "always" ;
+        VOCAB:strength "L1" .
+
+    :ActMonitor-Heartfailure-HeartFailureWeightBaseline VOCAB:causes :TrTransitionTo-Heartfailure-HeartFailureWeightBaseline .
+
+    _:Ne3a7a9aab0bb4e6c873f1c95e2f66a2b a VOCAB:SituationType ;
+        rdfs:label "Patient in Weight Baseline State"@en ;
+        VOCAB:hasLogicalOperator "==" ;
+        VOCAB:hasValue "Active" ;
+        VOCAB:refersToCharacteristic "Body Weight" ;
+        VOCAB:stateOf "urgent"^^xsd:string .
+}
+
+data:Rec-Heartfailure-HeartFailureDevicePulsOxim_assertion {
+    data:Rec-Heartfailure-HeartFailureDevicePulsOxim a VOCAB:ClinicalRecommendation ;
+        rdfs:label "Device-Profile-PULS-OXIM-HeartFailure"@en ;
+        VOCAB:aboutExecutionOf :ActMonitor-Heartfailure-HeartFailureDevicePulsOxim ;
+        VOCAB:basedOn data:CB-Heartfailure-HeartFailureDevicePulsOxim ;
+        VOCAB:partOf :CIG-Heartfailure ;
+        VOCAB:strength "should" .
+
+    :TrTransitionTo-Heartfailure-HeartFailureDevicePulsOxim a VOCAB:TransitionType,
+            owl:NamedIndividual ;
+        VOCAB:hasExpectedSituation _:N4fc466225c394b7db93d987f4375a685 .
+
+    data:CB-Heartfailure-HeartFailureDevicePulsOxim a VOCAB:CausationBelief ;
+        VOCAB:frequency "always" ;
+        VOCAB:strength "L1" .
+
+    :ActMonitor-Heartfailure-HeartFailureDevicePulsOxim VOCAB:causes :TrTransitionTo-Heartfailure-HeartFailureDevicePulsOxim .
+
+    _:N4fc466225c394b7db93d987f4375a685 a VOCAB:SituationType ;
+        rdfs:label "Patient in Pulse Oximeter Device State"@en ;
+        VOCAB:hasLogicalOperator "==" ;
+        VOCAB:hasValue "Active" ;
+        VOCAB:refersToCharacteristic "Pulse Oximeter Device" ;
+        VOCAB:stateOf "urgent"^^xsd:string .
+}
+
+data:Rec-Heartfailure-HeartFailureDeviceBp_provenance {
+    data:Rec-Heartfailure-HeartFailureDeviceBp_assertion prov:wasDerivedFrom <DINGO/PlanDefinition/Heartfailure> .
+
+    data:CB-Heartfailure-HeartFailureDeviceBp prov:wasDerivedFrom <DINGO/ActivityDefinition/HEART-FAILURE-DEVICE-BP> .
+}
+
+data:Rec-Heartfailure-HeartFailureBpHypotension_head {
+    data:Rec-Heartfailure-HeartFailureBpHypotension_head a nanopub:Nanopublication ;
+        nanopub:hasAssertion data:Rec-Heartfailure-HeartFailureBpHypotension_assertion ;
+        nanopub:hasProvenance data:Rec-Heartfailure-HeartFailureBpHypotension_provenance ;
+        nanopub:hasPublicationInfo data:Rec-Heartfailure-HeartFailureBpHypotension_pubinfo .
+}
+
+data:Rec-Heartfailure-HeartFailureWeightGain_pubinfo {
+    data:Rec-Heartfailure-HeartFailureWeightGain_head prov:generatedAtTime "2026-07-20T06:27:52"^^xsd:dateTime ;
+        prov:wasAttributedTo data:FHIRTransformationPipeline .
+}
+
+data:Rec-Heartfailure-HeartFailureHrBradycardia_pubinfo {
+    data:Rec-Heartfailure-HeartFailureHrBradycardia_head prov:generatedAtTime "2026-07-20T06:27:52"^^xsd:dateTime ;
+        prov:wasAttributedTo data:FHIRTransformationPipeline .
+}
+
+data:Rec-Heartfailure-HeartFailureSpo2Hypoxia_assertion {
+    data:Rec-Heartfailure-HeartFailureSpo2Hypoxia a VOCAB:ClinicalRecommendation ;
+        rdfs:label "Default_Threshold-SPO2_HYPOXIA-HeartFailure"@en ;
+        VOCAB:aboutExecutionOf :ActMonitor-Heartfailure-HeartFailureSpo2Hypoxia ;
+        VOCAB:basedOn data:CB-Heartfailure-HeartFailureSpo2Hypoxia ;
+        VOCAB:partOf :CIG-Heartfailure ;
+        VOCAB:strength "should" .
+
+    :TrTransitionTo-Heartfailure-HeartFailureSpo2Hypoxia a VOCAB:TransitionType,
+            owl:NamedIndividual ;
+        VOCAB:hasExpectedSituation _:N334b58f549fd4be2946ae12c3e58d384,
+            _:N9a3289e1be934566ad4309f63645861f .
+
+    data:CB-Heartfailure-HeartFailureSpo2Hypoxia a VOCAB:CausationBelief ;
+        VOCAB:frequency "always" ;
+        VOCAB:strength "L1" .
+
+    :ActMonitor-Heartfailure-HeartFailureSpo2Hypoxia VOCAB:causes :TrTransitionTo-Heartfailure-HeartFailureSpo2Hypoxia .
+
+    _:N334b58f549fd4be2946ae12c3e58d384 a VOCAB:SituationType ;
+        rdfs:label "Patient state <=90.0 %"@en ;
+        VOCAB:hasLogicalOperator "<=" ;
+        VOCAB:hasUnit "%" ;
+        VOCAB:hasValue 9e+01 ;
+        VOCAB:refersToCharacteristic "Hypoxia" ;
+        VOCAB:stateOf "asap"^^xsd:string .
+
+    _:N9a3289e1be934566ad4309f63645861f a VOCAB:SituationType ;
+        rdfs:label "Patient state <=92.0 %"@en ;
+        VOCAB:hasLogicalOperator "<=" ;
+        VOCAB:hasUnit "%" ;
+        VOCAB:hasValue 9.2e+01 ;
+        VOCAB:refersToCharacteristic "Hypoxia" ;
+        VOCAB:stateOf "urgent"^^xsd:string .
+}
+
+data:Rec-Heartfailure-HeartFailureHrBradycardia_assertion {
+    data:Rec-Heartfailure-HeartFailureHrBradycardia a VOCAB:ClinicalRecommendation ;
+        rdfs:label "Default_Threshold-HR_BRADYCARDIA-HeartFailure"@en ;
+        VOCAB:aboutExecutionOf :ActMonitor-Heartfailure-HeartFailureHrBradycardia ;
+        VOCAB:basedOn data:CB-Heartfailure-HeartFailureHrBradycardia ;
+        VOCAB:partOf :CIG-Heartfailure ;
+        VOCAB:strength "should" .
+
+    :TrTransitionTo-Heartfailure-HeartFailureHrBradycardia a VOCAB:TransitionType,
+            owl:NamedIndividual ;
+        VOCAB:hasExpectedSituation _:N09cda18b278c48e9bab647ac7474c0e2,
+            _:N843caee5a9304583a0c6abb696fdd5f1 .
+
+    data:CB-Heartfailure-HeartFailureHrBradycardia a VOCAB:CausationBelief ;
+        VOCAB:frequency "always" ;
+        VOCAB:strength "L1" .
+
+    :ActMonitor-Heartfailure-HeartFailureHrBradycardia VOCAB:causes :TrTransitionTo-Heartfailure-HeartFailureHrBradycardia .
+
+    _:N09cda18b278c48e9bab647ac7474c0e2 a VOCAB:SituationType ;
+        rdfs:label "Patient state <=50.0 bpm"@en ;
+        VOCAB:hasLogicalOperator "<=" ;
+        VOCAB:hasUnit "bpm" ;
+        VOCAB:hasValue 5e+01 ;
+        VOCAB:refersToCharacteristic "Heart Rate" ;
+        VOCAB:stateOf "urgent"^^xsd:string .
+
+    _:N843caee5a9304583a0c6abb696fdd5f1 a VOCAB:SituationType ;
+        rdfs:label "Patient state <=40.0 bpm"@en ;
+        VOCAB:hasLogicalOperator "<=" ;
+        VOCAB:hasUnit "bpm" ;
+        VOCAB:hasValue 4e+01 ;
+        VOCAB:refersToCharacteristic "Heart Rate" ;
+        VOCAB:stateOf "asap"^^xsd:string .
+}
+
+

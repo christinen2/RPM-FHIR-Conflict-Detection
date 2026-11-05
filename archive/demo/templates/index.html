@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>FHIR CarePlan Conflict Engine Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-slate-50 text-slate-800 min-h-screen p-6 font-sans">
+    <header
+      class="max-w-6xl mx-auto mb-6 border-b border-slate-200 pb-4 flex justify-between items-center"
+    >
+      <div>
+        <h1 class="text-2xl font-bold text-indigo-600">
+          FHIR Threshold Conflict Detection Engine
+        </h1>
+        <p class="text-sm text-slate-500">
+          Graph Conflict Detection for FHIR Plan Definitions (for RPMS)
+        </p>
+      </div>
+      <!-- <span
+        class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full border border-indigo-200"
+        >Demo Site</span
+      > -->
+    </header>
+
+    <main class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Column 1: Selection, Image & Raw JSON -->
+      <section
+        class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col h-[1000px]"
+      >
+        <h2 class="text-lg font-semibold text-slate-800 mb-3">
+          1. Select FHIR Bundle
+        </h2>
+
+        <select
+          id="scenarioSelect"
+          class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 mb-3"
+        >
+          {% for key, item in scenarios.items() %}
+          <option value="{{ key }}">{{ item.title }}</option>
+          {% endfor %}
+        </select>
+
+        <!-- Threshold Visualization Image Container -->
+        <div
+          class="mb-3 bg-slate-100 rounded-lg p-2 border border-slate-200 text-center flex-shrink-0"
+        >
+          <span
+            class="block text-xs uppercase tracking-wider text-slate-500 font-bold mb-1"
+          >
+            Thresholds
+          </span>
+          <img
+            id="scenarioImage"
+            src=""
+            alt="Scenario Threshold Diagram"
+            class="max-h-36 mx-auto object-contain rounded border border-slate-300 shadow-sm"
+            onerror="
+              this.style.display = 'none';
+              document.getElementById('imageError').classList.remove('hidden');
+            "
+            onload="
+              this.style.display = 'block';
+              document.getElementById('imageError').classList.add('hidden');
+            "
+          />
+          <p id="imageError" class="text-xs text-slate-400 italic hidden">
+            No image available for this scenario
+          </p>
+        </div>
+
+        <span
+          class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-2"
+          >Raw FHIR CarePlan (JSON)</span
+        >
+        <textarea
+          id="jsonViewer"
+          readonly
+          class="w-full flex-grow bg-slate-900 font-mono text-xs p-3 rounded-lg border border-slate-800 text-emerald-400 overflow-y-auto focus:outline-none"
+        ></textarea>
+
+        <button
+          id="runBtn"
+          class="mt-4 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition-colors flex justify-center items-center gap-2 shadow-sm"
+        >
+          <span>Run Conflict Detection</span>
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M14 5l7 7m0 0l-7 7m7-7H3"
+            />
+          </svg>
+        </button>
+      </section>
+
+      <section
+        class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col h-[1000px]"
+      >
+        <h2 class="text-lg font-semibold text-slate-800 mb-3">
+          2. Analysis &amp; Detected Conflicts
+        </h2>
+        <div
+          id="resultsContainer"
+          class="flex-grow bg-slate-50 p-4 rounded-lg border border-slate-200 overflow-y-auto flex flex-col items-start justify-start text-slate-400 min-h-0"
+        >
+          <div class="m-auto text-center">
+            <p class="text-sm">
+              Select a scenario and click "Run Conflict Detection"
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Pass scenario data to JS -->
+    <script id="scenariosData" type="application/json">
+      {{ scenarios|tojson }}
+    </script>
+
+    <!-- Link to external JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>

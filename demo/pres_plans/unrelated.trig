@@ -1,0 +1,67 @@
+@prefix : <http://prototype/data/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tmr: <http://tmr#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:graph_UR_Plan1_UR_Plan2 {
+    :UR_Plan1_UR_Plan2 a :PlanDefinition ;
+        rdfs:label "Unrelated - Monitoring Plan 1_Unrelated - Monitoring Plan 2" ;
+        :hasAction :Action_Monitor-BP-1,
+            :Action_Monitor-BP-2 ;
+        :status true .
+
+    :Action_Monitor-BP-1 a :Action ;
+        rdfs:label "Monitor-BP-1" ;
+        :activityDefinition :ActivityDefinition_UR_Action1 .
+
+    :Action_Monitor-BP-2 a :Action ;
+        rdfs:label "Monitor-BP-2" ;
+        :activityDefinition :ActivityDefinition_UR_Action2 .
+
+    :ActivityDefinition_UR_Action1 a :ActivityDefinition ;
+        rdfs:label "Monitor Blood Pressure 1" ;
+        :requiresObservation :ObservationDefinition_UR_Obs1 ;
+        :threshold :Interval_asap-UR_Action1,
+            :Interval_urgent-UR_Action1 .
+
+    :ActivityDefinition_UR_Action2 a :ActivityDefinition ;
+        rdfs:label "Monitor Blood Pressure 2" ;
+        :requiresObservation :ObservationDefinition_UR_Obs2 ;
+        :threshold :Interval_asap-UR_Action2,
+            :Interval_urgent-UR_Action2 .
+
+    :Interval_asap-UR_Action1 a tmr:ThresholdInterval ;
+        :higherInclusive false ;
+        :lowerBound 1.79e+02 ;
+        :lowerInclusive true ;
+        :priority "asap" ;
+        :upperBound "INF"^^xsd:double .
+
+    :Interval_asap-UR_Action2 a tmr:ThresholdInterval ;
+        :higherInclusive false ;
+        :lowerBound 1.79e+02 ;
+        :lowerInclusive true ;
+        :priority "asap" ;
+        :upperBound "INF"^^xsd:double .
+
+    :Interval_urgent-UR_Action1 a tmr:ThresholdInterval ;
+        :higherInclusive false ;
+        :lowerBound 9.9e+01 ;
+        :lowerInclusive true ;
+        :priority "urgent" ;
+        :upperBound 1.79e+02 .
+
+    :Interval_urgent-UR_Action2 a tmr:ThresholdInterval ;
+        :higherInclusive false ;
+        :lowerBound 9.9e+01 ;
+        :lowerInclusive true ;
+        :priority "urgent" ;
+        :upperBound 1.79e+02 .
+
+    :ObservationDefinition_UR_Obs1 a :ObservationDefinition ;
+        rdfs:label "UR_Obs1" .
+
+    :ObservationDefinition_UR_Obs2 a :ObservationDefinition ;
+        rdfs:label "UR_Obs2" .
+}
+

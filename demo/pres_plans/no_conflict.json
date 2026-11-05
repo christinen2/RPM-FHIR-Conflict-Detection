@@ -1,0 +1,188 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "DINGO/PlanDefinition/NC_Plan1",
+      "request": {
+        "method": "PUT",
+        "url": "PlanDefinition/NC_Plan1"
+      },
+      "resource": {
+        "resourceType": "PlanDefinition",
+        "id": "NC_Plan1",
+        "url": "DINGO/PlanDefinition/NC_Plan1",
+        "name": "NC-Plan1",
+        "title": "No Conflict - High BP Monitoring",
+        "status": "active",
+        "action": [
+          {
+            "title": "Monitor-High-BP",
+            "definitionCanonical": "DINGO/ActivityDefinition/NC_Action1"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ActivityDefinition/NC_Action1",
+      "request": {
+        "method": "PUT",
+        "url": "ActivityDefinition/NC_Action1"
+      },
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "NC_Action1",
+        "url": "DINGO/ActivityDefinition/NC_Action1",
+        "meta": {
+          "profile": [
+            "DINGO/StructureDefinition/activity-definition-threshold-default|1.0.0"
+          ]
+        },
+        "name": "NC-Monitor-High-BP",
+        "title": "Monitor High Systolic Blood Pressure",
+        "status": "active",
+        "date": "2025-01-30T06:47:18.500+00:00",
+        "usage": "threshold-default",
+        "intent": "plan",
+        "useContext": [
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "urgent"
+            },
+            "valueQuantity": {
+              "value": 140,
+              "comparator": ">=",
+              "unit": "mmHg"
+            }
+          },
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "asap"
+            },
+            "valueQuantity": {
+              "value": 180,
+              "comparator": ">=",
+              "unit": "mmHg"
+            }
+          }
+        ],
+        "effectivePeriod": {
+          "start": "2025-01-30T06:47:18.500+00:00"
+        },
+        "observationRequirement": [
+          {
+            "reference": "ObservationDefinition/NC_Obs1"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ObservationDefinition/NC_Obs1",
+      "request": {
+        "method": "PUT",
+        "url": "ObservationDefinition/NC_Obs1"
+      },
+      "resource": {
+        "resourceType": "ObservationDefinition",
+        "id": "NC_Obs1",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:11073:10101",
+              "code": "MDC_PRESS_BLD_NONINV_SYS"
+            }
+          ]
+        },
+        "permittedDataType": ["Quantity"],
+        "quantitativeDetails": {
+          "unit": {
+            "coding": [
+              {
+                "system": "urn:iso:std:iso:11073:10101",
+                "code": "MDC_DIM_MMHG"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "DINGO/PlanDefinition/NC_Plan2",
+      "request": {
+        "method": "PUT",
+        "url": "PlanDefinition/NC_Plan2"
+      },
+      "resource": {
+        "resourceType": "PlanDefinition",
+        "id": "NC_Plan2",
+        "url": "DINGO/PlanDefinition/NC_Plan2",
+        "name": "NC-Plan2",
+        "title": "No Conflict - Low BP Monitoring",
+        "status": "active",
+        "action": [
+          {
+            "title": "Monitor-Low-BP",
+            "definitionCanonical": "DINGO/ActivityDefinition/NC_Action2"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ActivityDefinition/NC_Action2",
+      "request": {
+        "method": "PUT",
+        "url": "ActivityDefinition/NC_Action2"
+      },
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "NC_Action2",
+        "url": "DINGO/ActivityDefinition/NC_Action2",
+        "meta": {
+          "profile": [
+            "DINGO/StructureDefinition/activity-definition-threshold-default|1.0.0"
+          ]
+        },
+        "name": "NC-Monitor-Low-BP",
+        "title": "Monitor Low Systolic Blood Pressure",
+        "status": "active",
+        "date": "2025-01-30T06:47:18.500+00:00",
+        "usage": "threshold-default",
+        "intent": "plan",
+        "useContext": [
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "urgent"
+            },
+            "valueQuantity": {
+              "value": 90,
+              "comparator": "<=",
+              "unit": "mmHg"
+            }
+          },
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "asap"
+            },
+            "valueQuantity": {
+              "value": 80,
+              "comparator": "<=",
+              "unit": "mmHg"
+            }
+          }
+        ],
+        "effectivePeriod": {
+          "start": "2025-01-30T06:47:18.500+00:00"
+        },
+        "observationRequirement": [
+          {
+            "reference": "ObservationDefinition/NC_Obs1"
+          }
+        ]
+      }
+    }
+  ]
+}

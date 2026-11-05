@@ -1,0 +1,64 @@
+@prefix : <http://prototype/data/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tmr: <http://tmr#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:graph_NC_Plan1_NC_Plan2 {
+    :NC_Plan1_NC_Plan2 a :PlanDefinition ;
+        rdfs:label "No Conflict - High BP Monitoring_No Conflict - Low BP Monitoring" ;
+        :hasAction :Action_NC_Action1,
+            :Action_NC_Action2 ;
+        :status true .
+
+    :Action_NC_Action1 a :Action ;
+        rdfs:label "Monitor-High-BP" ;
+        :activityDefinition :ActivityDefinition_NC_Action1 .
+
+    :Action_NC_Action2 a :Action ;
+        rdfs:label "Monitor-Low-BP" ;
+        :activityDefinition :ActivityDefinition_NC_Action2 .
+
+    :ActivityDefinition_NC_Action1 a :ActivityDefinition ;
+        rdfs:label "Monitor High Systolic Blood Pressure" ;
+        :requiresObservation :ObservationDefinition_NC_Obs1 ;
+        :threshold :Interval_asap-NC_Action1,
+            :Interval_urgent-NC_Action1 .
+
+    :ActivityDefinition_NC_Action2 a :ActivityDefinition ;
+        rdfs:label "Monitor Low Systolic Blood Pressure" ;
+        :requiresObservation :ObservationDefinition_NC_Obs1 ;
+        :threshold :Interval_asap-NC_Action2,
+            :Interval_urgent-NC_Action2 .
+
+    :Interval_asap-NC_Action1 a tmr:ThresholdInterval ;
+        :higherInclusive false ;
+        :lowerBound 1.8e+02 ;
+        :lowerInclusive true ;
+        :priority "asap" ;
+        :upperBound "INF"^^xsd:double .
+
+    :Interval_asap-NC_Action2 a tmr:ThresholdInterval ;
+        :higherInclusive true ;
+        :lowerBound 9e+01 ;
+        :lowerInclusive true ;
+        :priority "asap" ;
+        :upperBound 8e+01 .
+
+    :Interval_urgent-NC_Action1 a tmr:ThresholdInterval ;
+        :higherInclusive false ;
+        :lowerBound 1.4e+02 ;
+        :lowerInclusive true ;
+        :priority "urgent" ;
+        :upperBound 1.8e+02 .
+
+    :Interval_urgent-NC_Action2 a tmr:ThresholdInterval ;
+        :higherInclusive true ;
+        :lowerBound "-INF"^^xsd:double ;
+        :lowerInclusive false ;
+        :priority "urgent" ;
+        :upperBound 9e+01 .
+
+    :ObservationDefinition_NC_Obs1 a :ObservationDefinition ;
+        rdfs:label "NC_Obs1" .
+}
+

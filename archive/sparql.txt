@@ -1,0 +1,226 @@
+ 
+    PREFIX : <http://prototype/data>
+PREFIX tmr: <http://tmr>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?act1Label ?priority1 ?low1 ?high1 ?act2Label ?priority2 ?low2 ?high2
+WHERE {
+  GRAPH ?g {
+    # Match Activity 1
+    ?act1 a :ActivityDefinition ;
+          rdfs:label ?act1Label ;
+          :requiresObservation ?obs ;
+          :threshold ?t1 .
+
+    ?t1 a tmr:ThresholdInterval ;
+        :priority ?priority1 ;
+        :lowerBound ?rawLow1 ;
+        :upperBound ?rawHigh1 ;
+        :lowerInclusive ?incLow1 ;
+        :higherInclusive ?incHigh1 .
+
+    # Match Activity 2
+    ?act2 a :ActivityDefinition ;
+          rdfs:label ?act2Label ;
+          :requiresObservation ?obs ;
+          :threshold ?t2 .
+
+    ?t2 a tmr:ThresholdInterval ;
+        :priority ?priority2 ;
+        :lowerBound ?rawLow2 ;
+        :upperBound ?rawHigh2 ;
+        :lowerInclusive ?incLow2 ;
+        :higherInclusive ?incHigh2 .
+
+    FILTER (?act1 != ?act2)
+    FILTER (STR(?act1) < STR(?act2))
+
+    # Convert literal representations safely
+    BIND(IF(STR(?rawLow1) = "-INF", -1.0e308, xsd:double(STR(?rawLow1))) AS ?low1)
+    BIND(IF(STR(?rawHigh1) = "INF", 1.0e308, xsd:double(STR(?rawHigh1))) AS ?high1)
+    
+    BIND(IF(STR(?rawLow2) = "-INF", -1.0e308, xsd:double(STR(?rawLow2))) AS ?low2)
+    BIND(IF(STR(?rawHigh2) = "INF", 1.0e308, xsd:double(STR(?rawHigh2))) AS ?high2)
+
+    # Interval Intersection
+    FILTER (?low1 < ?high2 && ?low2 < ?high1)
+  }
+}
+
+
+
+## ver 2 =====================================================================================
+#     sparql = """
+ 
+#     PREFIX : <http://prototype/data>
+#     PREFIX tmr: <http://tmr>
+#     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+#     PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+#     SELECT ?act1Label ?priority1 ?low1 ?high1 ?act2Label ?priority2 ?low2 ?high2
+#     WHERE {
+#         GRAPH ?g {
+#             # Match Activity 1
+#             ?act1 a :ActivityDefinition ;
+#                 rdfs:label ?act1Label ;
+#                 :requiresObservation ?obs ;
+#                 :threshold ?t1 .
+
+#             ?t1 a tmr:ThresholdInterval ;
+#                 :priority ?priority1 ;
+#                 :lowerBound ?rawLow1 ;
+#                 :upperBound ?rawHigh1 ;
+#                 :lowerInclusive ?incLow1 ;
+#                 :higherInclusive ?incHigh1 .
+
+#             # Match Activity 2
+#             ?act2 a :ActivityDefinition ;
+#                 rdfs:label ?act2Label ;
+#                 :requiresObservation ?obs ;
+#                 :threshold ?t2 .
+
+#             ?t2 a tmr:ThresholdInterval ;
+#                 :priority ?priority2 ;
+#                 :lowerBound ?rawLow2 ;
+#                 :upperBound ?rawHigh2 ;
+#                 :lowerInclusive ?incLow2 ;
+#                 :higherInclusive ?incHigh2 .
+
+#             FILTER (?act1 != ?act2)
+#             FILTER (STR(?act1) < STR(?act2))
+
+#             # Convert literal representations safely
+#             BIND(IF(STR(?rawLow1) = "-INF", -1.0e308, xsd:double(STR(?rawLow1))) AS ?low1)
+#             BIND(IF(STR(?rawHigh1) = "INF", 1.0e308, xsd:double(STR(?rawHigh1))) AS ?high1)
+            
+#             BIND(IF(STR(?rawLow2) = "-INF", -1.0e308, xsd:double(STR(?rawLow2))) AS ?low2)
+#             BIND(IF(STR(?rawHigh2) = "INF", 1.0e308, xsd:double(STR(?rawHigh2))) AS ?high2)
+
+#             # Interval Intersection
+#             FILTER (?low1 < ?high2 && ?low2 < ?high1)
+#         }
+#     }
+#     """
+
+
+# ver 3 =====================================================================================
+
+#     sparql = """
+#     PREFIX : <http://prototype/data>
+# PREFIX tmr: <http://tmr>
+# PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+# PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+# SELECT ?act1Label ?priority1 ?low1 ?high1 ?act2Label ?priority2 ?low2 ?high2
+# WHERE {
+#     GRAPH ?g {
+#         # Match Activity 1
+#         ?act1 a :ActivityDefinition ;
+#             rdfs:label ?act1Label ;
+#             :requiresObservation ?obs ;
+#             :threshold ?t1 .
+
+#         ?t1 a tmr:ThresholdInterval ;
+#             :priority ?priority1 ;
+#             :lowerBound ?rawLow1 ;
+#             :upperBound ?rawHigh1 ;
+#             :lowerInclusive ?incLow1 ;
+#             :higherInclusive ?incHigh1 .
+
+#         # Match Activity 2
+#         ?act2 a :ActivityDefinition ;
+#             rdfs:label ?act2Label ;
+#             :requiresObservation ?obs ;
+#             :threshold ?t2 .
+
+#         ?t2 a tmr:ThresholdInterval ;
+#             :priority ?priority2 ;
+#             :lowerBound ?rawLow2 ;
+#             :upperBound ?rawHigh2 ;
+#             :lowerInclusive ?incLow2 ;
+#             :higherInclusive ?incHigh2 .
+
+#         # Avoid reflexive/self-matches and duplicate pairs
+#         FILTER (?act1 != ?act2)
+#         FILTER (STR(?act1) < STR(?act2))
+
+#         # 1. High-Urgency Priority Check
+#         FILTER (LCASE(STR(?priority1)) IN ("urgent", "stat", "asap"))
+#         FILTER (LCASE(STR(?priority2)) IN ("urgent", "stat", "asap"))
+
+#         # 2. Convert literal representations safely to numeric values
+#         BIND(IF(STR(?rawLow1) = "-INF", -1.0e308, xsd:double(STR(?rawLow1))) AS ?low1)
+#         BIND(IF(STR(?rawHigh1) = "INF", 1.0e308, xsd:double(STR(?rawHigh1))) AS ?high1)
+        
+#         BIND(IF(STR(?rawLow2) = "-INF", -1.0e308, xsd:double(STR(?rawLow2))) AS ?low2)
+#         BIND(IF(STR(?rawHigh2) = "INF", 1.0e308, xsd:double(STR(?rawHigh2))) AS ?high2)
+
+#         # 3. Whole Spectrum Saturation Checks:
+#         # A) Lower bound starts at/below baseline (<= 20)
+#         FILTER (?low1 <= 20.0 || ?low2 <= 20.0)
+
+#         # B) Upper bound reaches +INF (>= 1.0e300)
+#         FILTER (?high1 >= 1.0e300 || ?high2 >= 1.0e300)
+
+#         # C) Ranges touch or overlap (using <= to catch contiguous bounds like 99.0)
+#         FILTER (?low1 <= ?high2 && ?low2 <= ?high1)
+#     }
+# }
+# """
+
+
+
+current =====================================================================================
+
+
+    PREFIX : <http://prototype/data>
+    PREFIX tmr: <http://tmr>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+    SELECT ?act1Label ?priority1 ?low1 ?high1 ?act2Label ?priority2 ?low2 ?high2 ?overlapStart ?overlapEnd
+    WHERE {
+        GRAPH ?g {
+            ?act1 a :ActivityDefinition ;
+                rdfs:label ?act1Label ;
+                :requiresObservation ?obs ;
+                :threshold ?t1 .
+
+            ?t1 a tmr:ThresholdInterval ;
+                :priority ?priority1 ;
+                :lowerBound ?rawLow1 ;
+                :upperBound ?rawHigh1 .
+
+            ?act2 a :ActivityDefinition ;
+                rdfs:label ?act2Label ;
+                :requiresObservation ?obs ;
+                :threshold ?t2 .
+
+            ?t2 a tmr:ThresholdInterval ;
+                :priority ?priority2 ;
+                :lowerBound ?rawLow2 ;
+                :upperBound ?rawHigh2 .
+
+            FILTER (?act1 != ?act2)
+            FILTER (STR(?act1) < STR(?act2))
+
+            # Convert strings to double
+            BIND(IF(STR(?rawLow1) = "-INF", -1.0e308, xsd:double(STR(?rawLow1))) AS ?low1)
+            BIND(IF(STR(?rawHigh1) = "INF", 1.0e308, xsd:double(STR(?rawHigh1))) AS ?high1)
+            BIND(IF(STR(?rawLow2) = "-INF", -1.0e308, xsd:double(STR(?rawLow2))) AS ?low2)
+            BIND(IF(STR(?rawHigh2) = "INF", 1.0e308, xsd:double(STR(?rawHigh2))) AS ?high2)
+
+            # Calculate bounds of overlap
+            BIND(IF(?low1 > ?low2, ?low1, ?low2) AS ?overlapStart)
+            BIND(IF(?high1 < ?high2, ?high1, ?high2) AS ?overlapEnd)
+
+            # 1. Check if an overlap actually exists (Start < End)
+            FILTER (?overlapStart < ?overlapEnd)
+
+            # 2. Filter for high urgency triggers (urgent / asap)
+            FILTER (LCASE(STR(?priority1)) IN ("urgent", "asap"))
+            FILTER (LCASE(STR(?priority2)) IN ("urgent", "asap"))
+        }
+    }
+    """

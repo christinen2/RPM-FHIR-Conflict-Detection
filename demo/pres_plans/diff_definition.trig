@@ -1,0 +1,48 @@
+@prefix : <http://prototype/data/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tmr: <http://tmr#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:graph_DD_Plan1_DD_Plan2 {
+    :DD_Plan1_DD_Plan2 a :PlanDefinition ;
+        rdfs:label "Different Definition - High BP Monitoring 1_Different Definition - High BP Monitoring 2" ;
+        :hasAction :Action_DD_Action1,
+            :Action_DD_Action2 ;
+        :status true .
+
+    :Action_DD_Action1 a :Action ;
+        rdfs:label "Monitor-High-BP-1" ;
+        :activityDefinition :ActivityDefinition_DD_Action1 .
+
+    :Action_DD_Action2 a :Action ;
+        rdfs:label "Monitor-High-BP-2" ;
+        :activityDefinition :ActivityDefinition_DD_Action2 .
+
+    :ActivityDefinition_DD_Action1 a :ActivityDefinition ;
+        rdfs:label "Monitor High Systolic Blood Pressure 1" ;
+        :requiresObservation :ObservationDefinition_DD_Obs1 ;
+        :threshold :Interval_urgent-DD_Action1 .
+
+    :ActivityDefinition_DD_Action2 a :ActivityDefinition ;
+        rdfs:label "Monitor High Systolic Blood Pressure 2" ;
+        :requiresObservation :ObservationDefinition_DD_Obs1 ;
+        :threshold :Interval_urgent-DD_Action2 .
+
+    :Interval_urgent-DD_Action1 a tmr:ThresholdInterval ;
+        :higherInclusive false ;
+        :lowerBound 1.4e+02 ;
+        :lowerInclusive true ;
+        :priority "urgent" ;
+        :upperBound "INF"^^xsd:double .
+
+    :Interval_urgent-DD_Action2 a tmr:ThresholdInterval ;
+        :higherInclusive false ;
+        :lowerBound 1.5e+02 ;
+        :lowerInclusive true ;
+        :priority "urgent" ;
+        :upperBound "INF"^^xsd:double .
+
+    :ObservationDefinition_DD_Obs1 a :ObservationDefinition ;
+        rdfs:label "DD_Obs1" .
+}
+

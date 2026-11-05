@@ -1,0 +1,48 @@
+@prefix : <http://prototype/data/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tmr: <http://tmr#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:graph_Cond1_Cond2 {
+    :Cond1_Cond2 a :PlanDefinition ;
+        rdfs:label "Cond1-PlanDefinition_Cond2-PlanDefinition" ;
+        :hasAction :Action_Default_Threshold-Action1,
+            :Action_Default_Threshold-Action2 ;
+        :status true .
+
+    :Action_Default_Threshold-Action1 a :Action ;
+        rdfs:label "Default_Threshold-Action1" ;
+        :activityDefinition :ActivityDefinition_Action1 .
+
+    :Action_Default_Threshold-Action2 a :Action ;
+        rdfs:label "Default_Threshold-Action2" ;
+        :activityDefinition :ActivityDefinition_Action2 .
+
+    :ActivityDefinition_Action1 a :ActivityDefinition ;
+        rdfs:label "Action 1 title" ;
+        :requiresObservation :ObservationDefinition_Obs1 ;
+        :threshold :Interval_urgent-Action1 .
+
+    :ActivityDefinition_Action2 a :ActivityDefinition ;
+        rdfs:label "Action 2 title" ;
+        :requiresObservation :ObservationDefinition_Obs1 ;
+        :threshold :Interval_asap-Action2 .
+
+    :Interval_asap-Action2 a tmr:ThresholdInterval ;
+        :higherInclusive false ;
+        :lowerBound 1.01e+02 ;
+        :lowerInclusive true ;
+        :priority "asap" ;
+        :upperBound "INF"^^xsd:double .
+
+    :Interval_urgent-Action1 a tmr:ThresholdInterval ;
+        :higherInclusive false ;
+        :lowerBound 9e+01 ;
+        :lowerInclusive true ;
+        :priority "urgent" ;
+        :upperBound "INF"^^xsd:double .
+
+    :ObservationDefinition_Obs1 a :ObservationDefinition ;
+        rdfs:label "Obs1" .
+}
+

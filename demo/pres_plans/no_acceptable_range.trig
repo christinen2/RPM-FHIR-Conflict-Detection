@@ -1,0 +1,92 @@
+@prefix : <http://prototype/data/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tmr: <http://tmr#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:graph_NAR_Plan1_NAR_Plan2 {
+    :NAR_Plan1_NAR_Plan2 a :PlanDefinition ;
+        rdfs:label "No Acceptable Range - High BP Monitoring_No Acceptable Range - Low BP Monitoring" ;
+        :hasAction :Action_NAR_Action1,
+            :Action_NAR_Action2,
+            :Action_NAR_Action3 ;
+        :status true .
+
+    :Action_NAR_Action1 a :Action ;
+        rdfs:label "Monitor-High-BP" ;
+        :activityDefinition :ActivityDefinition_NAR_Action1 .
+
+    :Action_NAR_Action2 a :Action ;
+        rdfs:label "Monitor-Low-BP" ;
+        :activityDefinition :ActivityDefinition_NAR_Action2 .
+
+    :Action_NAR_Action3 a :Action ;
+        rdfs:label "Weight Check" ;
+        :activityDefinition :ActivityDefinition_NAR_Action3 .
+
+    :ActivityDefinition_NAR_Action1 a :ActivityDefinition ;
+        rdfs:label "Monitor High Systolic Blood Pressure" ;
+        :requiresObservation :ObservationDefinition_NAR_Obs1 ;
+        :threshold :Interval_asap-NAR_Action1,
+            :Interval_urgent-NAR_Action1 .
+
+    :ActivityDefinition_NAR_Action2 a :ActivityDefinition ;
+        rdfs:label "Monitor Low Systolic Blood Pressure" ;
+        :requiresObservation :ObservationDefinition_NAR_Obs1 ;
+        :threshold :Interval_asap-NAR_Action2,
+            :Interval_urgent-NAR_Action2 .
+
+    :ActivityDefinition_NAR_Action3 a :ActivityDefinition ;
+        rdfs:label "Weight Check" ;
+        :requiresObservation :ObservationDefinition_NAR_Obs2 ;
+        :threshold :Interval_asap-NAR_Action3,
+            :Interval_urgent-NAR_Action3 .
+
+    :Interval_asap-NAR_Action1 a tmr:ThresholdInterval ;
+        :higherInclusive false ;
+        :lowerBound 1.6e+02 ;
+        :lowerInclusive true ;
+        :priority "asap" ;
+        :upperBound "INF"^^xsd:double .
+
+    :Interval_asap-NAR_Action2 a tmr:ThresholdInterval ;
+        :higherInclusive true ;
+        :lowerBound 1.4e+02 ;
+        :lowerInclusive true ;
+        :priority "asap" ;
+        :upperBound 8e+01 .
+
+    :Interval_asap-NAR_Action3 a tmr:ThresholdInterval ;
+        :higherInclusive true ;
+        :lowerBound 5e+01 ;
+        :lowerInclusive true ;
+        :priority "asap" ;
+        :upperBound 4.5e+01 .
+
+    :Interval_urgent-NAR_Action1 a tmr:ThresholdInterval ;
+        :higherInclusive false ;
+        :lowerBound 1.4e+02 ;
+        :lowerInclusive true ;
+        :priority "urgent" ;
+        :upperBound 1.6e+02 .
+
+    :Interval_urgent-NAR_Action2 a tmr:ThresholdInterval ;
+        :higherInclusive true ;
+        :lowerBound "-INF"^^xsd:double ;
+        :lowerInclusive false ;
+        :priority "urgent" ;
+        :upperBound 1.4e+02 .
+
+    :Interval_urgent-NAR_Action3 a tmr:ThresholdInterval ;
+        :higherInclusive true ;
+        :lowerBound "-INF"^^xsd:double ;
+        :lowerInclusive false ;
+        :priority "urgent" ;
+        :upperBound 5e+01 .
+
+    :ObservationDefinition_NAR_Obs2 a :ObservationDefinition ;
+        rdfs:label "NAR_Obs2" .
+
+    :ObservationDefinition_NAR_Obs1 a :ObservationDefinition ;
+        rdfs:label "NAR_Obs1" .
+}
+

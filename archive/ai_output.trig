@@ -1,0 +1,63 @@
+@prefix : <http://prototype/data/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tmr: <http://tmr/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:graph_Cond1_Cond2 {
+    :self.id a :Guideline ;
+        rdfs:label "Cond1-PlanDefinition_Cond2-PlanDefinition" ;
+        :hasAction :Action_Default_Threshold-Action1,
+                    :Action_Default_Threshold-Action2 ;
+        :status true .
+
+    :Action_Default_Threshold-Action1 a :Action ;
+        rdfs:label "Default_Threshold-Action1" ;
+        :activityDefinition :ActivityDefinition_Action1 .
+
+    :Action_Default_Threshold-Action2 a :Action ;
+        rdfs:label "Default_Threshold-Action2" ;
+        :activityDefinition :ActivityDefinition_Action2 .
+
+    :ActivityDefinition_Action1 a :ActivityDefinition ;
+        rdfs:label "Action 1 title" ;
+        :requiresObservation :ActivityDefinition_Obs1 ;
+        :threshold _:Nf6e9c1b4159b4e9d83fd6b7780820e92,
+                   _:Nf8a5b708e7c04aefacd4c20a7f7e247b .
+
+    :ActivityDefinition_Action2 a :ActivityDefinition ;
+        rdfs:label "Action 2 title" ;
+        :requiresObservation :ActivityDefinition_Obs1 ;
+        :threshold _:Ne161dc78985241f1a6363e5c72badbe9,
+                   _:Nff31ee4928704b9a8ceede4b2825c530 .
+
+    :ActivityDefinition_Obs1 a :ObservationDefinition ;
+        rdfs:label "Obs1" .
+
+    _:Ne161dc78985241f1a6363e5c72badbe9 a tmr:ThresholdInterval ;
+        :higherInclusive true ;
+        :lowerBound 2.0e+01 ;
+        :lowerInclusive false ;
+        :priority "urgent" ;
+        :upperBound 3.0e+01 .
+
+    _:Nf6e9c1b4159b4e9d83fd6b7780820e92 a tmr:ThresholdInterval ;
+        :higherInclusive false ;
+        :lowerBound 9.9e+01 ;
+        :lowerInclusive true ;
+        :priority "urgent" ;
+        :upperBound 1.79e+02 .
+
+    _:Nf8a5b708e7c04aefacd4c20a7f7e247b a tmr:ThresholdInterval ;
+        :higherInclusive false ;
+        :lowerBound 1.79e+02 ;
+        :lowerInclusive true ;
+        :priority "asap" ;
+        :upperBound "INF"^^xsd:double .
+
+    _:Nff31ee4928704b9a8ceede4b2825c530 a tmr:ThresholdInterval ;
+        :higherInclusive true ;
+        :lowerBound "-INF"^^xsd:double ;
+        :lowerInclusive false ;
+        :priority "asap" ;
+        :upperBound 2.0e+01 .
+}

@@ -1,0 +1,687 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "DINGO/PlanDefinition/Heartfailure",
+      "request": {
+        "method": "PUT",
+        "url": "PlanDefinition/Heartfailure"
+      },
+      "resource": {
+        "resourceType": "PlanDefinition",
+        "id": "Heartfailure",
+        "url": "DINGO/PlanDefinition/Heartfailure",
+        "name": "Testing_Heartfailure-PlanDefinition",
+        "title": "Testing_Heartfailure-PlanDefinition",
+        "status": "active",
+        "action": [
+          {
+            "title": "Default_Threshold-BP_HYPERTENSION-HeartFailure",
+            "definitionCanonical": "DINGO/ActivityDefinition/HEART-FAILURE-BP-HYPERTENSION"
+          },
+          {
+            "title": "Default_Threshold-BP_HYPOTENSION-HeartFailure",
+            "definitionCanonical": "DINGO/ActivityDefinition/HEART-FAILURE-BP-HYPOTENSION"
+          },
+          {
+            "title": "Default_Threshold-HR_TACHYCARDIA-HeartFailure",
+            "definitionCanonical": "DINGO/ActivityDefinition/HEART-FAILURE-HR-TACHYCARDIA"
+          },
+          {
+            "title": "Default_Threshold-HR_BRADYCARDIA-HeartFailure",
+            "definitionCanonical": "DINGO/ActivityDefinition/HEART-FAILURE-HR-BRADYCARDIA"
+          },
+          {
+            "title": "Default_Threshold-SPO2_HYPOXIA-HeartFailure",
+            "definitionCanonical": "DINGO/ActivityDefinition/HEART-FAILURE-SPO2-HYPOXIA"
+          },
+          {
+            "title": "Default_Threshold-WEIGHT_GAIN-HeartFailure",
+            "definitionCanonical": "DINGO/ActivityDefinition/HEART-FAILURE-WEIGHT-GAIN"
+          },
+          {
+            "title": "Default_Threshold-WEIGHT_BASELINE-HeartFailure",
+            "definitionCanonical": "DINGO/ActivityDefinition/HEART-FAILURE-WEIGHT-BASELINE"
+          },
+          {
+            "title": "Device-Profile-BP-HeartFailure",
+            "definitionCanonical": "DINGO/ActivityDefinition/HEART-FAILURE-DEVICE-BP"
+          },
+          {
+            "title": "Device-Profile-PULS-OXIM-HeartFailure",
+            "definitionCanonical": "DINGO/ActivityDefinition/HEART-FAILURE-DEVICE-PULS-OXIM"
+          },
+          {
+            "title": "Device-Profile-SCALE-HeartFailure",
+            "definitionCanonical": "DINGO/ActivityDefinition/HEART-FAILURE-DEVICE-SCALE"
+          },
+          {
+            "title": "Promise-19",
+            "definitionCanonical": "DINGO/Questionnaire/PROMIS-19",
+            "timingTiming": {
+              "repeat": {
+                "frequency": 1,
+                "period": 1,
+                "periodUnit": "a"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/Group/Heartfailure-Cohort",
+      "request": {
+        "method": "PUT",
+        "url": "Group/Heartfailure-Cohort"
+      },
+      "resource": {
+        "resourceType": "Group",
+        "id": "Heartfailure-Cohort",
+        "meta": {
+          "profile": ["DINGO/StructureDefinition/group-cohort|1.0.0"]
+        },
+        "identifier": {
+          "use": "official",
+          "system": "DINGO-ID",
+          "value": "DINGO/Group/Heartfailure-Cohort"
+        },
+        "type": "person",
+        "actual": false,
+        "name": "HeartFailure Patients"
+      }
+    },
+    {
+      "fullUrl": "DINGO/CarePlan/Heartfailure-Cohort",
+      "request": {
+        "method": "PUT",
+        "url": "CarePlan/Heartfailure-Cohort"
+      },
+      "resource": {
+        "resourceType": "CarePlan",
+        "id": "Heartfailure-Cohort",
+        "meta": {
+          "profile": ["DINGO/StructureDefinition/careplan-cohort|1.0.0"]
+        },
+        "identifier": {
+          "use": "official",
+          "system": "DINGO-ID",
+          "value": "DINGO/CarePlan/Heartfailure-Cohort"
+        },
+        "instantiatesCanonical": ["DINGO/PlanDefinition/Heartfailure"],
+        "status": "active",
+        "intent": "plan",
+        "title": "HeartFailure",
+        "careTeam": [
+          {
+            "reference": "CareTeam/CareTeam1"
+          }
+        ],
+        "subject": {
+          "reference": "Group/Heartfailure-Cohort"
+        },
+        "note": [
+          {
+            "text": "{\"ALLOWED_CHARTS\": [\"BLOOD_PRESSURE\", \"HEART_RATE\", \"WEIGHT\",  \"SPO2\", \"PULSE_RATE\"]}"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ActivityDefinition/HEART-FAILURE-BP-HYPERTENSION",
+      "request": {
+        "method": "PUT",
+        "url": "ActivityDefinition/HEART-FAILURE-BP-HYPERTENSION"
+      },
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "HEART-FAILURE-BP-HYPERTENSION",
+        "url": "DINGO/ActivityDefinition/HEART-FAILURE-BP-HYPERTENSION",
+        "meta": {
+          "profile": [
+            "DINGO/StructureDefinition/activity-definition-threshold-default|1.0.0"
+          ]
+        },
+        "name": "HEART-FAILURE-BP-HYPERTENSION",
+        "title": "Hypertension",
+        "status": "active",
+        "date": "2025-01-30T06:47:18.500+00:00",
+        "usage": "threshold-default",
+        "intent": "plan",
+        "useContext": [
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "urgent"
+            },
+            "valueQuantity": {
+              "value": 99,
+              "comparator": ">=",
+              "unit": "mmHg"
+            }
+          },
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "asap"
+            },
+            "valueQuantity": {
+              "value": 179,
+              "comparator": ">=",
+              "unit": "mmHg"
+            }
+          }
+        ],
+        "effectivePeriod": {
+          "start": "2025-01-30T06:47:18.500+00:00"
+        },
+        "observationRequirement": [
+          {
+            "reference": "ObservationDefinition/MDC-PRESS-BLD-NONINV-SYS"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ActivityDefinition/HEART-FAILURE-BP-HYPOTENSION",
+      "request": {
+        "method": "PUT",
+        "url": "ActivityDefinition/HEART-FAILURE-BP-HYPOTENSION"
+      },
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "HEART-FAILURE-BP-HYPOTENSION",
+        "url": "DINGO/ActivityDefinition/HEART-FAILURE-BP-HYPOTENSION",
+        "meta": {
+          "profile": [
+            "DINGO/StructureDefinition/activity-definition-threshold-default|1.0.0"
+          ]
+        },
+        "name": "HEART-FAILURE-BP-HYPOTENSION",
+        "title": "Hypotension",
+        "status": "active",
+        "date": "2025-01-30T06:47:18.500+00:00",
+        "usage": "threshold-default",
+        "intent": "plan",
+        "useContext": [
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "urgent"
+            },
+            "valueQuantity": {
+              "value": 101,
+              "comparator": "<",
+              "unit": "mmHg"
+            }
+          },
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "asap"
+            },
+            "valueQuantity": {
+              "value": 90,
+              "comparator": "<",
+              "unit": "mmHg"
+            }
+          }
+        ],
+        "effectivePeriod": {
+          "start": "2025-01-30T06:47:18.500+00:00"
+        },
+        "observationRequirement": [
+          {
+            "reference": "ObservationDefinition/MDC-PRESS-BLD-NONINV-SYS"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ActivityDefinition/HEART-FAILURE-HR-TACHYCARDIA",
+      "request": {
+        "method": "PUT",
+        "url": "ActivityDefinition/HEART-FAILURE-HR-TACHYCARDIA"
+      },
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "HEART-FAILURE-HR-TACHYCARDIA",
+        "url": "DINGO/ActivityDefinition/HEART-FAILURE-HR-TACHYCARDIA",
+        "meta": {
+          "profile": [
+            "DINGO/StructureDefinition/activity-definition-threshold-default|1.0.0"
+          ]
+        },
+        "name": "HEART-FAILURE-HR-TACHYCARDIA",
+        "title": "Tachycardia",
+        "status": "active",
+        "date": "2026-04-08T00:00:00.000+00:00",
+        "usage": "threshold-default",
+        "intent": "plan",
+        "useContext": [
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "urgent"
+            },
+            "valueQuantity": {
+              "value": 99,
+              "comparator": ">=",
+              "unit": "bpm"
+            }
+          },
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "asap"
+            },
+            "valueQuantity": {
+              "value": 149,
+              "comparator": ">=",
+              "unit": "bpm"
+            }
+          }
+        ],
+        "effectivePeriod": {
+          "start": "2026-04-08T00:00:00.000+00:00"
+        },
+        "observationRequirement": [
+          {
+            "reference": "ObservationDefinition/MDC-PULS-RATE-NON-INV"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ActivityDefinition/HEART-FAILURE-HR-BRADYCARDIA",
+      "request": {
+        "method": "PUT",
+        "url": "ActivityDefinition/HEART-FAILURE-HR-BRADYCARDIA"
+      },
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "HEART-FAILURE-HR-BRADYCARDIA",
+        "url": "DINGO/ActivityDefinition/HEART-FAILURE-HR-BRADYCARDIA",
+        "meta": {
+          "profile": [
+            "DINGO/StructureDefinition/activity-definition-threshold-default|1.0.0"
+          ]
+        },
+        "name": "HEART-FAILURE-HR-BRADYCARDIA",
+        "title": "Bradycardia",
+        "status": "active",
+        "date": "2026-04-08T00:00:00.000+00:00",
+        "usage": "threshold-default",
+        "intent": "plan",
+        "useContext": [
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "urgent"
+            },
+            "valueQuantity": {
+              "value": 50,
+              "comparator": "<=",
+              "unit": "bpm"
+            }
+          },
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "asap"
+            },
+            "valueQuantity": {
+              "value": 40,
+              "comparator": "<=",
+              "unit": "bpm"
+            }
+          }
+        ],
+        "effectivePeriod": {
+          "start": "2026-04-08T00:00:00.000+00:00"
+        },
+        "observationRequirement": [
+          {
+            "reference": "ObservationDefinition/MDC-PULS-RATE-NON-INV"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ActivityDefinition/HEART-FAILURE-SPO2-HYPOXIA",
+      "request": {
+        "method": "PUT",
+        "url": "ActivityDefinition/HEART-FAILURE-SPO2-HYPOXIA"
+      },
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "HEART-FAILURE-SPO2-HYPOXIA",
+        "url": "DINGO/ActivityDefinition/HEART-FAILURE-SPO2-HYPOXIA",
+        "meta": {
+          "profile": [
+            "DINGO/StructureDefinition/activity-definition-threshold-default|1.0.0"
+          ]
+        },
+        "name": "HEART-FAILURE-SPO2-HYPOXIA",
+        "title": "Hypoxia",
+        "status": "active",
+        "date": "2026-04-08T00:00:00.000+00:00",
+        "usage": "threshold-default",
+        "intent": "plan",
+        "useContext": [
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "urgent"
+            },
+            "valueQuantity": {
+              "value": 92,
+              "comparator": "<=",
+              "unit": "%"
+            }
+          },
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "asap"
+            },
+            "valueQuantity": {
+              "value": 90,
+              "comparator": "<=",
+              "unit": "%"
+            }
+          }
+        ],
+        "effectivePeriod": {
+          "start": "2026-04-08T00:00:00.000+00:00"
+        },
+        "observationRequirement": [
+          {
+            "reference": "ObservationDefinition/MDC-SAT-O2-ART"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ActivityDefinition/HEART-FAILURE-WEIGHT-GAIN",
+      "request": {
+        "method": "PUT",
+        "url": "ActivityDefinition/HEART-FAILURE-WEIGHT-GAIN"
+      },
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "HEART-FAILURE-WEIGHT-GAIN",
+        "url": "DINGO/ActivityDefinition/HEART-FAILURE-WEIGHT-GAIN",
+        "meta": {
+          "profile": [
+            "DINGO/StructureDefinition/activity-definition-threshold-default|1.0.0"
+          ]
+        },
+        "name": "HEART-FAILURE-WEIGHT-GAIN",
+        "title": "Weight Gain",
+        "status": "active",
+        "date": "2026-04-08T00:00:00.000+00:00",
+        "usage": "threshold-default",
+        "intent": "plan",
+        "useContext": [
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "urgent"
+            },
+            "valueQuantity": {
+              "value": 2,
+              "comparator": ">=",
+              "unit": "kg"
+            }
+          }
+        ],
+        "effectivePeriod": {
+          "start": "2026-04-08T00:00:00.000+00:00"
+        },
+        "observationRequirement": [
+          {
+            "reference": "ObservationDefinition/MDC-MASS-BODY-ACTUAL"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ActivityDefinition/HEART-FAILURE-WEIGHT-BASELINE",
+      "request": {
+        "method": "PUT",
+        "url": "ActivityDefinition/HEART-FAILURE-WEIGHT-BASELINE"
+      },
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "HEART-FAILURE-WEIGHT-BASELINE",
+        "url": "DINGO/ActivityDefinition/HEART-FAILURE-WEIGHT-BASELINE",
+        "meta": {
+          "profile": [
+            "DINGO/StructureDefinition/activity-definition-threshold-default|1.0.0"
+          ]
+        },
+        "name": "HEART-FAILURE-WEIGHT-BASELINE",
+        "title": "Weight Baseline",
+        "status": "active",
+        "date": "2026-04-08T00:00:00.000+00:00",
+        "usage": "threshold-default",
+        "intent": "plan",
+        "useContext": [],
+        "effectivePeriod": {
+          "start": "2026-04-08T00:00:00.000+00:00"
+        },
+        "observationRequirement": [
+          {
+            "reference": "ObservationDefinition/MDC-MASS-BODY-ACTUAL"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ActivityDefinition/HEART-FAILURE-DEVICE-BP",
+      "request": {
+        "method": "PUT",
+        "url": "ActivityDefinition/HEART-FAILURE-DEVICE-BP"
+      },
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "HEART-FAILURE-DEVICE-BP",
+        "url": "DINGO/ActivityDefinition/HEART-FAILURE-DEVICE-BP",
+        "meta": {
+          "profile": [
+            "DINGO/StructureDefinition/activity-definition-measurement-default|1.0.0"
+          ]
+        },
+        "name": "HEART-FAILURE-DEVICE-BP",
+        "title": "Blood Pressure Device",
+        "status": "active",
+        "usage": "measurement-default",
+        "intent": "plan",
+        "useContext": [],
+        "observationRequirement": [
+          {
+            "reference": "ObservationDefinition/MDC-DEV-SPEC-PROFILE-BP"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ActivityDefinition/HEART-FAILURE-DEVICE-PULS-OXIM",
+      "request": {
+        "method": "PUT",
+        "url": "ActivityDefinition/HEART-FAILURE-DEVICE-PULS-OXIM"
+      },
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "HEART-FAILURE-DEVICE-PULS-OXIM",
+        "url": "DINGO/ActivityDefinition/HEART-FAILURE-DEVICE-PULS-OXIM",
+        "meta": {
+          "profile": [
+            "DINGO/StructureDefinition/activity-definition-measurement-default|1.0.0"
+          ]
+        },
+        "name": "HEART-FAILURE-DEVICE-PULS-OXIM",
+        "title": "Pulse Oximeter Device",
+        "status": "active",
+        "usage": "measurement-default",
+        "intent": "plan",
+        "useContext": [],
+        "observationRequirement": [
+          {
+            "reference": "ObservationDefinition/MDC-DEV-SPEC-PROFILE-PULS-OXIM"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ActivityDefinition/HEART-FAILURE-DEVICE-SCALE",
+      "request": {
+        "method": "PUT",
+        "url": "ActivityDefinition/HEART-FAILURE-DEVICE-SCALE"
+      },
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "HEART-FAILURE-DEVICE-SCALE",
+        "url": "DINGO/ActivityDefinition/HEART-FAILURE-DEVICE-SCALE",
+        "meta": {
+          "profile": [
+            "DINGO/StructureDefinition/activity-definition-measurement-default|1.0.0"
+          ]
+        },
+        "name": "HEART-FAILURE-DEVICE-SCALE",
+        "title": "Scale Device",
+        "status": "active",
+        "usage": "measurement-default",
+        "intent": "plan",
+        "useContext": [],
+        "observationRequirement": [
+          {
+            "reference": "ObservationDefinition/MDC-DEV-SPEC-PROFILE-SCALE"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ObservationDefinition/MDC-DEV-SPEC-PROFILE-BP",
+      "request": {
+        "method": "PUT",
+        "url": "ObservationDefinition/MDC-DEV-SPEC-PROFILE-BP"
+      },
+      "resource": {
+        "resourceType": "ObservationDefinition",
+        "id": "MDC-DEV-SPEC-PROFILE-BP",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:11073:10101",
+              "code": "MDC_DEV_SPEC_PROFILE_BP"
+            }
+          ]
+        },
+        "permittedDataType": ["SampledData"]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ObservationDefinition/MDC-DEV-SPEC-PROFILE-SCALE",
+      "request": {
+        "method": "PUT",
+        "url": "ObservationDefinition/MDC-DEV-SPEC-PROFILE-SCALE"
+      },
+      "resource": {
+        "resourceType": "ObservationDefinition",
+        "id": "MDC-DEV-SPEC-PROFILE-SCALE",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:11073:10101",
+              "code": "MDC_DEV_SPEC_PROFILE_SCALE"
+            }
+          ]
+        },
+        "permittedDataType": ["SampledData"]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ObservationDefinition/MDC-DEV-SPEC-PROFILE-PULS-OXIM",
+      "request": {
+        "method": "PUT",
+        "url": "ObservationDefinition/MDC-DEV-SPEC-PROFILE-PULS-OXIM"
+      },
+      "resource": {
+        "resourceType": "ObservationDefinition",
+        "id": "MDC-DEV-SPEC-PROFILE-PULS-OXIM",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:11073:10101",
+              "code": "MDC_DEV_SPEC_PROFILE_PULS_OXIM"
+            }
+          ]
+        },
+        "permittedDataType": ["SampledData"]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ObservationDefinition/MDC-PULS-OXIM-SAT-O2",
+      "request": {
+        "method": "PUT",
+        "url": "ObservationDefinition/MDC-PULS-OXIM-SAT-O2"
+      },
+      "resource": {
+        "resourceType": "ObservationDefinition",
+        "id": "MDC-PULS-OXIM-SAT-O2",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:11073:10101",
+              "code": "MDC_PULS_OXIM_SAT_O2"
+            }
+          ]
+        },
+        "permittedDataType": ["Quantity"],
+        "quantitativeDetails": {
+          "unit": {
+            "coding": [
+              {
+                "system": "urn:iso:std:iso:11073:10101",
+                "code": "MDC_DIM_PERCENTMDC_DIM_PERCENT"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "DINGO/ObservationDefinition/MDC-PULS-OXIM-PULS-RATE",
+      "request": {
+        "method": "PUT",
+        "url": "ObservationDefinition/MDC-PULS-OXIM-PULS-RATE"
+      },
+      "resource": {
+        "resourceType": "ObservationDefinition",
+        "id": "MDC-PULS-OXIM-PULS-RATE",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:11073:10101",
+              "code": "MDC_PULS_OXIM_PULS_RATE"
+            }
+          ]
+        },
+        "permittedDataType": ["Quantity"],
+        "quantitativeDetails": {
+          "unit": {
+            "coding": [
+              {
+                "system": "urn:iso:std:iso:11073:10101",
+                "code": "MDC_DIM_BEAT_PER_MIN"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

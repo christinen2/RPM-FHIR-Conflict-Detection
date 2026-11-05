@@ -1,0 +1,171 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "DINGO/PlanDefinition/Heartfailure",
+      "request": {
+        "method": "PUT",
+        "url": "PlanDefinition/Heartfailure"
+      },
+      "resource": {
+        "resourceType": "PlanDefinition",
+        "id": "Heartfailure",
+        "url": "DINGO/PlanDefinition/Heartfailure",
+        "name": "Testing_Heartfailure-PlanDefinition",
+        "title": "Testing_Heartfailure-PlanDefinition",
+        "status": "active",
+        "action": [
+          {
+            "title": "Default_Threshold-BP_HYPERTENSION-HeartFailure",
+            "definitionCanonical": "DINGO/ActivityDefinition/HEART-FAILURE-BP-HYPERTENSION"
+          },
+          {
+            "title": "Default_Threshold-BP_HYPOTENSION-HeartFailure",
+            "definitionCanonical": "DINGO/ActivityDefinition/HEART-FAILURE-BP-HYPOTENSION"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ActivityDefinition/HEART-FAILURE-BP-HYPERTENSION",
+      "request": {
+        "method": "PUT",
+        "url": "ActivityDefinition/HEART-FAILURE-BP-HYPERTENSION"
+      },
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "HEART-FAILURE-BP-HYPERTENSION",
+        "url": "DINGO/ActivityDefinition/HEART-FAILURE-BP-HYPERTENSION",
+        "meta": {
+          "profile": [
+            "DINGO/StructureDefinition/activity-definition-threshold-default|1.0.0"
+          ]
+        },
+        "name": "HEART-FAILURE-BP-HYPERTENSION",
+        "title": "Hypertension",
+        "status": "active",
+        "date": "2025-01-30T06:47:18.500+00:00",
+        "usage": "threshold-default",
+        "intent": "plan",
+        "useContext": [
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "urgent"
+            },
+            "valueQuantity": {
+              "value": 99,
+              "comparator": ">=",
+              "unit": "mmHg"
+            }
+          },
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "asap"
+            },
+            "valueQuantity": {
+              "value": 179,
+              "comparator": ">=",
+              "unit": "mmHg"
+            }
+          }
+        ],
+        "effectivePeriod": {
+          "start": "2025-01-30T06:47:18.500+00:00"
+        },
+        "observationRequirement": [
+          {
+            "reference": "ObservationDefinition/MDC-PRESS-BLD-NONINV-SYS"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ActivityDefinition/HEART-FAILURE-BP-HYPOTENSION",
+      "request": {
+        "method": "PUT",
+        "url": "ActivityDefinition/HEART-FAILURE-BP-HYPOTENSION"
+      },
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "HEART-FAILURE-BP-HYPOTENSION",
+        "url": "DINGO/ActivityDefinition/HEART-FAILURE-BP-HYPOTENSION",
+        "meta": {
+          "profile": [
+            "DINGO/StructureDefinition/activity-definition-threshold-default|1.0.0"
+          ]
+        },
+        "name": "HEART-FAILURE-BP-HYPOTENSION",
+        "title": "Hypotension",
+        "status": "active",
+        "date": "2025-01-30T06:47:18.500+00:00",
+        "usage": "threshold-default",
+        "intent": "plan",
+        "useContext": [
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "urgent"
+            },
+            "valueQuantity": {
+              "value": 101,
+              "comparator": "<",
+              "unit": "mmHg"
+            }
+          },
+          {
+            "code": {
+              "system": "http://hl7.org/fhir/request-priority",
+              "code": "asap"
+            },
+            "valueQuantity": {
+              "value": 90,
+              "comparator": "<",
+              "unit": "mmHg"
+            }
+          }
+        ],
+        "effectivePeriod": {
+          "start": "2025-01-30T06:47:18.500+00:00"
+        },
+        "observationRequirement": [
+          {
+            "reference": "ObservationDefinition/MDC-PRESS-BLD-NONINV-SYS"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "DINGO/ObservationDefinition/MDC-PRESS-BLD-NONINV-SYS",
+      "request": {
+        "method": "PUT",
+        "url": "ObservationDefinition/MDC-PRESS-BLD-NONINV-SYS"
+      },
+      "resource": {
+        "resourceType": "ObservationDefinition",
+        "id": "MDC-PRESS-BLD-NONINV-SYS",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:iso:std:iso:11073:10101",
+              "code": "MDC_PRESS_BLD_NONINV_SYS"
+            }
+          ]
+        },
+        "permittedDataType": ["Quantity"],
+        "quantitativeDetails": {
+          "unit": {
+            "coding": [
+              {
+                "system": "urn:iso:std:iso:11073:10101",
+                "code": "MDC_DIM_MMHG"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
