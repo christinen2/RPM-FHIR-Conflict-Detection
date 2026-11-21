@@ -8,8 +8,13 @@ from .conflict import extract_thresholds, find_conflicts_z3
 
 # For manual testing purposes
 if __name__ == "__main__":
-    input_file = "./pres_plans/no_acceptable_range.json"
-    output_file = "./pres_plans/no_acceptable_range.trig"
+    input_file = "./tests/fhir/single_plan_no_shared_obs.json"
+
+
+
+
+    # input_file = "./demo/pres_plans/unrelated.json"
+    output_file = "./demo/pres_plans/unrelated.trig"
 
 
     with open(input_file) as f:

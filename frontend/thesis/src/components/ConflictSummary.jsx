@@ -42,7 +42,7 @@ const ConflictSummary = ({ res, selectedFile }) => {
         justifyContent: "space-evenly"
       }}
     >
-      <SummaryStatBox number={pd} statname="plan definition(s)" />
+      <SummaryStatBox number={pd} statname="plan definitions" />
       <SummaryStatBox number={act} statname="activites" />
       <SummaryStatBox number={conflict} statname="conflicts" />
     </Box>

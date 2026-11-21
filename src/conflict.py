@@ -130,17 +130,21 @@ def find_conflicts_z3(by_observation: Dict[str, Any], strict_mode: bool = False)
             conflicts.extend(detected_conflicts)
 
         if has_no_acceptable_range(threshold_items):
+            activity_names = list({
+                item["activity_label"] for item in threshold_items
+            })
+
             conflicts.append({
-                "activity1": "Multiple activities",
-                "activity2": "Multiple activities",
-                "priority1": "urgent",
-                "priority2": "urgent",
+                "activity1": activity_names[0] if activity_names else None,
+                "activity2": activity_names[1] if len(activity_names) > 1 else None,
+                "priority1": None,
+                "priority2": None,
                 "bounds1": [],
                 "bounds2": [],
                 "overlap": [],
                 "type": ConflictType.NO_ACCEPTABLE_RANGE.value,
                 "detail": (
-                    "The combined urgent thresholds cover the entire "
+                    "The combined thresholds across all priorities cover the entire "
                     "measurement range, leaving no acceptable values."
                 ),
                 "observation": obs_name,
@@ -203,6 +207,15 @@ def compare_activities_z3(
 
             low1, high1 = interval1["low"], interval1["high"]
             low2, high2 = interval2["low"], interval2["high"]
+
+            if (
+                p1.lower() == p2.lower()
+                and low1 == low2
+                and high1 == high2
+                and interval1["lo_inclusive"] == interval2["lo_inclusive"]
+                and interval1["hi_inclusive"] == interval2["hi_inclusive"]
+            ): 
+                continue
 
 
             cond1 = interval_constraints(obs_var, interval1)
